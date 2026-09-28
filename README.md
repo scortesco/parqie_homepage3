@@ -1,25 +1,50 @@
-# CODING AGENTS: READ THIS FIRST
+# Parqie
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Pre-launch homepage (Romanian) and waitlist API.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+| Path | What |
+| --- | --- |
+| `web/` | React 18 + TypeScript + Vite + Tailwind, Zustand, React Router. The homepage. |
+| `backend/` | Java 21, Spring Boot 3.4, PostgreSQL + Flyway. `POST /api/waitlist`. |
+| `project/`, `chats/`, `DESIGN_HANDOFF.md` | Claude Design handoff bundle. `project/Parqie Homepage v3.dc.html` is the reference design. |
 
-## What you should do — IMPORTANT
+## Run locally
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+```bash
+docker compose up -d                 # PostgreSQL 16 on :5432 (parqie/parqie)
 
-**Read `project/Parqie Homepage v3.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+cd backend && mvn spring-boot:run    # API on :8080, Flyway migrates on start
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+cd web && npm install && npm run dev # http://localhost:5173, proxies /api → :8080
+```
 
-## About the design files
+Backend config (env vars): `DB_URL`, `DB_USER`, `DB_PASSWORD`, `CORS_ALLOWED_ORIGINS`.
+Web config: `VITE_API_BASE_URL` if the API is not served from the same origin.
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+## Tests
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+```bash
+cd backend && mvn test                                                   # web-layer tests
+DB_URL=jdbc:postgresql://localhost:5432/parqie_test mvn test             # + Postgres integration tests
+cd web && npm run build                                                  # type-check + build
+```
 
-## Bundle contents
+## Waitlist API
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Parqie pre-launch homepage iteration` project files (HTML prototypes, assets, components)
+`POST /api/waitlist`
+
+```json
+{ "email": "ana@exemplu.md", "location": "Botanica, str. Dacia", "source": "zone" }
+```
+
+- `source`: `nav` | `hero` | `priority` | `zone` (which call to action was used).
+- `location` is optional, up to 200 chars.
+- `204` on success, whether the email is new or already listed (the API doesn't reveal who is on the list). One row per email, lower-cased; signing up again keeps the first `source` and updates `location` if a new one is given.
+- `400` (problem+json) on an invalid email, unknown source or overlong fields.
+
+## Notes on the homepage
+
+- Fonts are self-hosted via `@fontsource` (Plus Jakarta Sans for the page, Montserrat for the FAQ, as in the design).
+- Layout breakpoints from the design live in `web/tailwind.config.ts` (`zones4` 560, `foot4` 640, `three` 900, `nav` 1000, `foot5` 1100).
+- Animations (floating pin, glow) are disabled under `prefers-reduced-motion`.
+- Placeholder links (`#`): Intră în cont, Ajutor, Contactează-ne, Job-uri, legal pages, social links, store badges.
