@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/parqie-design-system-019dd414-65a2-7a64-843f-8dfdef8ccf6d/colors_and_type.css">
+<script src="_ds/parqie-design-system-019dd414-65a2-7a64-843f-8dfdef8ccf6d/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Montserrat:wght@400;500;600&amp;display=swap">
+<style>:root{--pj:'Plus Jakarta Sans',system-ui,sans-serif;--mo:'Montserrat',system-ui,sans-serif}body{margin:0;background:#FFFFFF;font-family:var(--pj);color:#191919;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#053333}input::placeholder{color:#8A9594}input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ACFF78;outline-offset:2px}html{scroll-behavior:smooth}@keyframes pqSway{0%,100%{transform:rotateX(4deg) rotateY(-14deg)}50%{transform:rotateX(2deg) rotateY(-4deg)}}@keyframes pqBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}@keyframes pqPulse{0%,100%{opacity:.8}50%{opacity:1}}</style>
+</helmet>
+
+<div style="font-family:var(--pj);background:#FFFFFF;min-height:100vh;overflow-x:hidden">
+
+<nav data-screen-label="Nav" style="position:sticky;top:0;z-index:30;background:#053333;padding:0 clamp(20px,5vw,64px);border-bottom:1px solid #0B3F3F">
+  <div style="max-width:1200px;margin:0 auto;height:74px;display:flex;align-items:center;gap:16px">
+    <a href="#top" aria-label="Parqie" style="display:flex;flex:none"><img src="assets/parqie-logo.png" alt="parqie" style="height:32px;display:block"></a>
+    <div style="flex:1"></div>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:28px;margin-right:12px">
+        <a href="#cum" style="display:flex;align-items:center;gap:6px;font:500 16px/20px var(--pj);color:#F9F9F9" style-hover="color:#ACFF78">Parchează<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#business" style="font:500 16px/20px var(--pj);color:#F9F9F9" style-hover="color:#ACFF78">Devino partener</a>
+        <a href="#despre" style="font:500 16px/20px var(--pj);color:#F9F9F9" style-hover="color:#ACFF78">Despre noi</a>
+        <a href="#" style="font:500 16px/20px var(--pj);color:#F9F9F9" style-hover="color:#ACFF78">Intră în cont</a>
+      </div>
+    </sc-if>
+    <button onClick="{{ openBlank }}" style="height:40px;padding:0 16px;border-radius:8px;border:2px solid #48C9A9;background:#ACFF78;color:#000;font:600 15px/20px var(--pj);cursor:pointer;flex:none;transition:background 200ms ease-out" style-hover="background:#9FEF6C" style-active="transform:scale(0.98)">Intră pe listă</button>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <span style="display:flex;align-items:center;gap:6px;margin-left:12px;font:500 16px/20px var(--pj);color:#F9F9F9;cursor:pointer">Română<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Meniu" style="width:44px;height:44px;border-radius:12px;border:1px solid #1A5252;background:transparent;display:grid;place-items:center;cursor:pointer;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round"><path d="{{ menuIcon }}"></path></svg></button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;padding:8px 0 20px;border-top:1px solid #0F4A4A">
+      <a href="#cum" onClick="{{ closeMenu }}" style="padding:14px 0;font:600 17px/20px var(--pj);color:#F9F9F9;border-bottom:1px solid #0F4A4A">Parchează</a>
+      <a href="#business" onClick="{{ closeMenu }}" style="padding:14px 0;font:600 17px/20px var(--pj);color:#F9F9F9;border-bottom:1px solid #0F4A4A">Devino partener</a>
+      <a href="#despre" onClick="{{ closeMenu }}" style="padding:14px 0;font:600 17px/20px var(--pj);color:#F9F9F9;border-bottom:1px solid #0F4A4A">Despre noi</a>
+      <a href="#" onClick="{{ closeMenu }}" style="padding:14px 0;font:600 17px/20px var(--pj);color:#F9F9F9;border-bottom:1px solid #0F4A4A">Intră în cont</a>
+      <span style="padding:14px 0 0;font:500 15px/20px var(--pj);color:#A9BDBD">Română · English</span>
+    </div>
+  </sc-if>
+</nav>
+
+<section id="top" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#053333;padding:clamp(48px,6vw,72px) clamp(20px,5vw,64px) clamp(64px,7vw,88px)">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 78% 62%, #0B4A45 0%, rgba(5,51,51,0) 70%);pointer-events:none"></div>
+  <div style="position:absolute;left:calc(50% + 20px);top:-460px;width:1500px;height:1500px;border-radius:50%;border:1px solid rgba(172,255,120,0.16);pointer-events:none"></div>
+  <div style="position:absolute;left:calc(50% + 180px);top:-300px;width:1500px;height:1500px;border-radius:50%;border:1px solid rgba(172,255,120,0.07);pointer-events:none"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:clamp(40px,5vw,72px);align-items:center;min-height:clamp(560px,calc(100vh - 234px),720px)">
+    <div style="display:flex;flex-direction:column;gap:28px;min-width:0;max-width:600px">
+      <div style="display:flex">
+        <span style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#F9F9F9;border-radius:999px;padding:7px 16px 7px 12px;font:600 14px/18px var(--pj)">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ACFF78;box-shadow:0 0 0 4px rgba(172,255,120,0.18)"></span>
+          Lansăm în curând în Chișinău
+        </span>
+      </div>
+      <h1 style="margin:0;font:800 clamp(44px,5.6vw,76px)/1.02 var(--pj);letter-spacing:-0.04em;color:#F9F9F9;text-wrap:balance">{{ h1a }}<span style="color:#ACFF78">{{ h1b }}</span></h1>
+      <p style="margin:0;font:400 clamp(17px,1.4vw,19px)/1.6 var(--pj);color:#B9CBCA;max-width:520px;text-wrap:pretty">Găsești, rezervi și plătești locul înainte să ajungi. Spune-ne unde ai nevoie de parcare și acolo ajungem primii.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:580px">
+        <label for="hero-addr" style="font:700 14px/20px var(--pj);color:#F9F9F9">Unde ai nevoie de parcare?</label>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;background:#FFFFFF;border-radius:20px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,0.25)">
+          <div style="flex:999 1 220px;display:flex;align-items:center;gap:10px;padding:0 12px;min-width:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <input id="hero-addr" value="{{ address }}" onChange="{{ onAddress }}" onKeyDown="{{ onAddressKey }}" placeholder="Strada sau cartierul" style="flex:1;min-width:0;height:52px;border:0;outline:none;background:transparent;font:500 17px/24px var(--pj);color:#000">
+          </div>
+          <button onClick="{{ openHero }}" style="flex:1 0 200px;max-width:100%;height:56px;padding:0 26px;border-radius:15px;border:0;background:#ACFF78;color:#000;font:700 15px/20px var(--pj);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 200ms ease-out" style-hover="background:#9FEF6C" style-active="transform:scale(0.98)">
+            Vreau Parqie aici
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:4px">
+          <span style="display:flex;align-items:center;gap:8px;font:500 14px/20px var(--pj);color:#B9CBCA"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Acces prioritar la lansare</span>
+          <span style="display:flex;align-items:center;gap:8px;font:500 14px/20px var(--pj);color:#B9CBCA"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Gratuit, fără obligații</span>
+        </div>
+      </div>
+      <a href="#cum" style="display:inline-flex;align-items:center;gap:10px;font:700 15px/20px var(--pj);color:#F9F9F9;align-self:flex-start" style-hover="color:#ACFF78">
+        <span style="width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(249,249,249,0.4);display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg></span>
+        Vezi cum funcționează</a>
+    </div>
+
+    <div style="position:relative;width:100%;max-width:600px;justify-self:center;aspect-ratio:1/1">
+      <div style="position:absolute;left:14%;right:14%;top:18%;bottom:14%;border-radius:50%;background:radial-gradient(closest-side, rgba(172,255,120,0.30), rgba(172,255,120,0) 100%);animation:pqPulse 6s ease-in-out infinite"></div>
+      <div style="position:absolute;left:3px;top:3px;width:2px;height:2px;border-radius:50%;background:transparent;box-shadow:40px 70px 0 rgba(249,249,249,.35),130px 24px 0 rgba(249,249,249,.18),470px 60px 0 rgba(172,255,120,.45),540px 250px 0 rgba(249,249,249,.25),30px 330px 0 rgba(249,249,249,.2),330px 16px 0 rgba(172,255,120,.35),520px 430px 0 rgba(249,249,249,.3),100px 520px 0 rgba(172,255,120,.3),150px 200px 0 rgba(249,249,249,.16),400px 540px 0 rgba(249,249,249,.22),560px 120px 0 rgba(249,249,249,.18),250px 560px 0 rgba(249,249,249,.14)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:1%;height:36%;perspective:760px">
+        <div style="position:absolute;inset:0;transform:rotateX(58deg);transform-origin:50% 100%;display:flex">
+          <div style="flex:1;border-top:3px solid #3A7070;border-left:3px solid #3A7070;border-radius:6px 0 0 0"></div>
+          <div style="flex:1;border:3px solid #ACFF78;border-bottom:0;border-radius:4px 4px 0 0;box-shadow:0 0 22px rgba(172,255,120,0.55),inset 0 0 22px rgba(172,255,120,0.35);background:radial-gradient(ellipse 70% 80% at 50% 60%, rgba(172,255,120,0.4), rgba(172,255,120,0) 100%)"></div>
+          <div style="flex:1;border-top:3px solid #3A7070;border-right:3px solid #3A7070;border-radius:0 6px 0 0"></div>
+        </div>
+      </div>
+      <div style="position:absolute;left:33%;right:33%;top:40%;bottom:6%;border-radius:40% 40% 8% 8%;background:linear-gradient(0deg, rgba(172,255,120,0.26), rgba(172,255,120,0) 100%);filter:blur(14px);pointer-events:none"></div>
+      <div style="position:absolute;left:37%;right:37%;bottom:10%;height:5%;border-radius:50%;background:radial-gradient(closest-side, rgba(0,0,0,0.55), rgba(0,0,0,0))"></div>
+      <div style="position:absolute;left:30%;top:21%;width:40%;height:45.5%;perspective:1400px">
+        {{ pin3d }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Beneficii" style="background:#F9F9F9;padding:clamp(80px,9vw,128px) clamp(20px,5vw,64px)">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,4.5vw,64px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="display:inline-flex;align-items:center;gap:8px;font:700 14px/20px var(--pj);color:#053333"><span style="width:8px;height:8px;border-radius:50%;background:#ACFF78;box-shadow:0 0 0 3px #053333"></span>De ce Parqie</span>
+        <h2 style="margin:0;font:800 clamp(34px,4.2vw,54px)/1.04 var(--pj);letter-spacing:-0.035em;color:#000;text-wrap:balance">Parcarea nu mai e la noroc.</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.6 var(--pj);color:#4A5857;max-width:380px">Nu mai pleci de acasă sperând că prinzi un loc liber. Pleci știind că îl ai.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ threeGrid }};gap:20px">
+      <div style="background:#053333;border-radius:24px;padding:12px;display:flex;flex-direction:column;transition:transform 200ms ease-out,box-shadow 200ms ease-out" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,51,51,0.18)">
+        <div style="height:200px;background:#0A3E3E;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/16px var(--pj);color:#8FB3B3">Fără Parqie</span>
+            <svg viewBox="0 0 300 54" preserveAspectRatio="none" style="width:100%;height:54px;display:block"><path d="M8 44 C40 44 44 10 80 10 S118 46 150 40 S176 6 206 14 S226 50 250 38 S282 12 292 26" fill="none" stroke="#3E6E6E" stroke-width="3" stroke-linecap="round"></path><circle cx="8" cy="44" r="5" fill="#3E6E6E"></circle></svg>
+          </div>
+          <div style="height:1px;background:#1A5252"></div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font:600 12px/16px var(--pj);color:#ACFF78">Cu Parqie</span>
+            <div style="display:flex;align-items:center">
+              <span style="width:10px;height:10px;border-radius:50%;background:#ACFF78;flex:none"></span>
+              <span style="flex:1;height:3px;background:#ACFF78"></span>
+              <span style="width:36px;height:36px;border-radius:10px;background:#ACFF78;display:grid;place-items:center;flex:none"><img src="assets/logo-mark-green.svg" alt="" style="height:20px"></span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:24px 16px 16px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font:800 22px/1.2 var(--pj);letter-spacing:-0.02em;color:#F9F9F9">Fără ture în plus</h3>
+          <p style="margin:0;font:400 16px/1.6 var(--pj);color:#B9CBCA">Știi unde parchezi înainte să pornești motorul. Gata cu rotitul prin cartier.</p>
+        </div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E4E6E8;border-radius:24px;padding:12px;display:flex;flex-direction:column;transition:transform 200ms ease-out,box-shadow 200ms ease-out" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,51,51,0.12)">
+        <div style="height:200px;background:#F2F5F4;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="display:flex;align-items:center;gap:6px;font:700 13px/1 var(--pj);color:#000"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Azi</span>
+            <span style="font:600 12px/1 var(--pj);color:#4A5857">Centru</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="position:relative;height:56px;border-radius:12px;background:#FFFFFF;border:1px solid #E1E6E5">
+              <span style="position:absolute;left:33.33%;top:0;bottom:0;width:1px;background:#E1E6E5"></span>
+              <span style="position:absolute;left:66.66%;top:0;bottom:0;width:1px;background:#E1E6E5"></span>
+              <div style="position:absolute;left:calc(33.33% + 4px);width:calc(33.33% - 8px);top:5px;bottom:5px;border-radius:8px;background:#ACFF78;display:flex;align-items:center;justify-content:center;gap:5px;font:700 12px/1 var(--pj);color:#053333"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Rezervat</div>
+            </div>
+            <div style="position:relative;height:12px;font:600 11px/12px var(--pj);color:#4A5857;white-space:nowrap"><span style="position:absolute;left:0">12:00</span><span style="position:absolute;left:33.33%;transform:translateX(-50%)">14:00</span><span style="position:absolute;left:66.66%;transform:translateX(-50%)">16:00</span><span style="position:absolute;right:0">18:00</span></div>
+          </div>
+        </div>
+        <div style="padding:24px 16px 16px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font:800 22px/1.2 var(--pj);letter-spacing:-0.02em;color:#000">Locul e al tău</h3>
+          <p style="margin:0;font:400 16px/1.6 var(--pj);color:#4A5857">Îl rezervi din timp, pentru cât ai nevoie. Când ajungi, te așteaptă.</p>
+        </div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E4E6E8;border-radius:24px;padding:12px;display:flex;flex-direction:column;transition:transform 200ms ease-out,box-shadow 200ms ease-out" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,51,51,0.12)">
+        <div style="height:200px;background:#F2F5F4;border-radius:16px;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:8px">
+          <div style="height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #E1E6E5;display:flex;align-items:center;gap:10px;padding:0 12px">
+            <span style="width:28px;height:28px;border-radius:8px;background:#F2F5F4;display:grid;place-items:center;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
+            <span style="flex:1;font:700 13px/1.2 var(--pj);color:#000">Cauți</span><span style="font:500 12px/1 var(--pj);color:#4A5857">Centru, azi</span>
+          </div>
+          <div style="height:48px;border-radius:12px;background:#FFFFFF;border:1px solid #E1E6E5;display:flex;align-items:center;gap:10px;padding:0 12px">
+            <span style="width:28px;height:28px;border-radius:8px;background:#F2F5F4;display:grid;place-items:center;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg></span>
+            <span style="flex:1;font:700 13px/1.2 var(--pj);color:#000">Rezervi</span><span style="font:500 12px/1 var(--pj);color:#4A5857">Locul nr. 12</span>
+          </div>
+          <div style="height:48px;border-radius:12px;background:#053333;display:flex;align-items:center;gap:10px;padding:0 12px">
+            <span style="width:28px;height:28px;border-radius:8px;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+            <span style="flex:1;font:700 13px/1.2 var(--pj);color:#F9F9F9">Plătești</span><span style="font:500 12px/1 var(--pj);color:#ACFF78">Din aplicație</span>
+          </div>
+        </div>
+        <div style="padding:24px 16px 16px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font:800 22px/1.2 var(--pj);letter-spacing:-0.02em;color:#000">Totul dintr-o aplicație</h3>
+          <p style="margin:0;font:400 16px/1.6 var(--pj);color:#4A5857">Cauți, rezervi și plătești din telefon. Fără bonuri și fără automate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cum" data-screen-label="Cum funcționează" style="background:#FFFFFF;padding:clamp(80px,9vw,128px) clamp(20px,5vw,64px);scroll-margin-top:74px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,4.5vw,64px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="display:inline-flex;align-items:center;gap:8px;font:700 14px/20px var(--pj);color:#053333"><span style="width:8px;height:8px;border-radius:50%;background:#ACFF78;box-shadow:0 0 0 3px #053333"></span>Cum funcționează</span>
+        <h2 style="margin:0;font:800 clamp(34px,4.2vw,54px)/1.04 var(--pj);letter-spacing:-0.035em;color:#000;text-wrap:balance">Trei pași și ai parcat.</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.6 var(--pj);color:#4A5857;max-width:380px">Durează mai puțin decât un tur de bloc. Și de data asta chiar găsești loc.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ threeGrid }};gap:40px 24px">
+      <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+        <div style="display:flex;align-items:center;height:48px">
+          <span style="width:48px;height:48px;border-radius:50%;background:#053333;color:#ACFF78;display:grid;place-items:center;font:800 15px/1 var(--pj);flex:none">01</span>
+          <sc-if value="{{ threeCol }}" hint-placeholder-val="{{ true }}"><span style="flex:1;height:2px;background:#053333;margin-right:-24px"></span></sc-if>
+        </div>
+        <div style="flex:1;background:#F4F6F5;border-radius:24px;padding:12px;display:flex;flex-direction:column;transition:transform 200ms ease-out,box-shadow 200ms ease-out" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,51,51,0.12)">
+          <div style="height:220px;background:#FFFFFF;border-radius:16px;display:grid;place-items:center"><img src="assets/ill-search.png" alt="" style="height:188px;width:auto;max-width:90%;object-fit:contain"></div>
+          <div style="padding:24px 16px 16px;display:flex;flex-direction:column;gap:10px">
+            <h3 style="margin:0;font:800 24px/1.15 var(--pj);letter-spacing:-0.02em;color:#000">Cauți</h3>
+            <p style="margin:0;font:400 16px/1.6 var(--pj);color:#4A5857">Scrii unde mergi și cât stai. Vezi ce locuri sunt libere pe intervalul tău.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+        <div style="display:flex;align-items:center;height:48px">
+          <span style="width:48px;height:48px;border-radius:50%;background:#053333;color:#ACFF78;display:grid;place-items:center;font:800 15px/1 var(--pj);flex:none">02</span>
+          <sc-if value="{{ threeCol }}" hint-placeholder-val="{{ true }}"><span style="flex:1;height:2px;background:#053333;margin-right:-24px"></span></sc-if>
+        </div>
+        <div style="flex:1;background:#F4F6F5;border-radius:24px;padding:12px;display:flex;flex-direction:column;transition:transform 200ms ease-out,box-shadow 200ms ease-out" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,51,51,0.12)">
+          <div style="height:220px;background:#FFFFFF;border-radius:16px;display:grid;place-items:center"><img src="assets/ill-reserve.png" alt="" style="height:188px;width:auto;max-width:90%;object-fit:contain"></div>
+          <div style="padding:24px 16px 16px;display:flex;flex-direction:column;gap:10px">
+            <h3 style="margin:0;font:800 24px/1.15 var(--pj);letter-spacing:-0.02em;color:#000">Rezervi</h3>
+            <p style="margin:0;font:400 16px/1.6 var(--pj);color:#4A5857">Alegi locul care îți convine. Prețul îl vezi de la început, nu la ieșire.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+        <div style="display:flex;align-items:center;height:48px">
+          <span style="width:48px;height:48px;border-radius:50%;background:#053333;color:#ACFF78;display:grid;place-items:center;font:800 15px/1 var(--pj);flex:none">03</span>
+          <span style="flex:1;height:2px;background:#053333"></span>
+          <span style="display:flex;align-items:center;gap:8px;height:40px;background:#ACFF78;border-radius:999px;padding:0 16px 0 8px;font:700 14px/1 var(--pj);color:#053333;flex:none"><span style="width:24px;height:24px;border-radius:50%;background:#053333;display:grid;place-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Ai parcat</span>
+        </div>
+        <div style="flex:1;background:#F4F6F5;border-radius:24px;padding:12px;display:flex;flex-direction:column;transition:transform 200ms ease-out,box-shadow 200ms ease-out" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,51,51,0.12)">
+          <div style="height:220px;background:#FFFFFF;border-radius:16px;display:grid;place-items:center"><img src="assets/ill-pay.png" alt="" style="height:188px;width:auto;max-width:90%;object-fit:contain"></div>
+          <div style="padding:24px 16px 16px;display:flex;flex-direction:column;gap:10px">
+            <h3 style="margin:0;font:800 24px/1.15 var(--pj);letter-spacing:-0.02em;color:#000">Parchezi</h3>
+            <p style="margin:0;font:400 16px/1.6 var(--pj);color:#4A5857">Mergi direct la loc. Plata e deja făcută, deci nu mai cauți niciun automat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Acces prioritar" style="background:#FFFFFF;padding:0 clamp(20px,5vw,64px) clamp(80px,9vw,128px)">
+  <div style="max-width:1200px;margin:0 auto;background:#ACFF78;border-radius:32px;padding:clamp(32px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(40px,5vw,72px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+      <div style="display:flex"><span style="background:#053333;color:#ACFF78;border-radius:999px;padding:8px 14px;font:700 13px/16px var(--pj)">Acces prioritar</span></div>
+      <h2 style="margin:0;font:800 clamp(34px,4.2vw,54px)/1.04 var(--pj);letter-spacing:-0.04em;color:#000;text-wrap:balance">Fii printre primii care parchează cu Parqie.</h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="display:flex;align-items:center;gap:12px;font:600 16px/1.4 var(--pj);color:#053333"><span style="width:24px;height:24px;border-radius:50%;background:#053333;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Intri în aplicație înaintea celorlalți</span>
+        <span style="display:flex;align-items:center;gap:12px;font:600 16px/1.4 var(--pj);color:#053333"><span style="width:24px;height:24px;border-radius:50%;background:#053333;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Afli primul când și unde pornim</span>
+        <span style="display:flex;align-items:center;gap:12px;font:600 16px/1.4 var(--pj);color:#053333"><span style="width:24px;height:24px;border-radius:50%;background:#053333;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Ne ajuți să alegem primele zone</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:540px">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;background:#FFFFFF;border-radius:20px;padding:8px">
+          <input type="email" value="{{ eaEmail }}" onChange="{{ onEaEmail }}" onKeyDown="{{ onEaKey }}" placeholder="Adresa ta de e-mail" style="flex:999 1 200px;min-width:0;height:52px;border:0;outline:none;background:transparent;padding:0 14px;font:500 16px/24px var(--pj);color:#000">
+          <button onClick="{{ openEa }}" style="flex:1 0 200px;height:52px;padding:0 22px;border-radius:15px;border:0;background:#053333;color:#F9F9F9;font:700 15px/20px var(--pj);cursor:pointer;transition:background 200ms ease-out" style-hover="background:#000000" style-active="transform:scale(0.98)">Vreau acces prioritar</button>
+        </div>
+        <span style="font:500 13px/18px var(--pj);color:#053333">Gratuit. Îți scriem doar când avem ceva important.</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;padding:12px 0">
+      <div style="width:100%;max-width:380px;background:#053333;border-radius:24px;transform:rotate(-3deg);box-shadow:0 30px 60px rgba(5,51,51,0.35);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:26px 26px 24px;display:flex;flex-direction:column;gap:26px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <img src="assets/parqie-logo.png" alt="parqie" style="height:24px">
+            <span style="border:1.5px solid #ACFF78;color:#ACFF78;border-radius:999px;padding:6px 11px;font:700 11px/1 var(--pj);white-space:nowrap">Acces prioritar</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font:600 12px/1 var(--pj);color:#8FB3B3">Valabil pentru</span>
+            <span style="font:800 clamp(32px,3.2vw,42px)/1 var(--pj);letter-spacing:-0.04em;color:#F9F9F9;white-space:nowrap">Primul val</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 16px">
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 11px/1 var(--pj);color:#8FB3B3">Oraș</span><span style="font:700 15px/1.2 var(--pj);color:#F9F9F9">Chișinău</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 11px/1 var(--pj);color:#8FB3B3">Cost</span><span style="font:700 15px/1.2 var(--pj);color:#F9F9F9">Gratuit</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 11px/1 var(--pj);color:#8FB3B3">Titular</span><span style="font:700 15px/1.2 var(--pj);color:#ACFF78">Tu</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 11px/1 var(--pj);color:#8FB3B3">Intri</span><span style="font:700 15px/1.2 var(--pj);color:#F9F9F9">Înaintea tuturor</span></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin:0 -14px">
+          <span style="width:28px;height:28px;border-radius:50%;background:#ACFF78;flex:none"></span>
+          <span style="flex:1;height:2px;background:#0F4A4A;margin:0 10px"></span>
+          <span style="width:28px;height:28px;border-radius:50%;background:#ACFF78;flex:none"></span>
+        </div>
+        <div style="padding:20px 26px 24px;display:flex;align-items:center;gap:18px">
+          <div style="flex:1;height:46px;background:repeating-linear-gradient(90deg,#F9F9F9 0 2px,transparent 2px 5px,#F9F9F9 5px 6px,transparent 6px 9px,#F9F9F9 9px 12px,transparent 12px 14px,#F9F9F9 14px 15px,transparent 15px 19px);opacity:.85;border-radius:2px"></div>
+          <span style="width:48px;height:48px;border-radius:14px;background:#ACFF78;display:grid;place-items:center;flex:none"><img src="assets/logo-mark-green.svg" alt="" style="height:28px"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zone" data-screen-label="Zone" style="background:#F9F9F9;padding:clamp(80px,9vw,128px) clamp(20px,5vw,64px);scroll-margin-top:74px">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(40px,5vw,72px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="display:inline-flex;align-items:center;gap:8px;font:700 14px/20px var(--pj);color:#053333"><span style="width:8px;height:8px;border-radius:50%;background:#ACFF78;box-shadow:0 0 0 3px #053333"></span>Tu alegi de unde începem</span>
+      <h2 style="margin:0;font:800 clamp(36px,4.6vw,60px)/1.02 var(--pj);letter-spacing:-0.04em;color:#000;text-wrap:balance">Unde e cel mai greu de parcat?</h2>
+      <p style="margin:0;font:400 18px/1.6 var(--pj);color:#4A5857;max-width:460px;text-wrap:pretty">Alege zona care îți dă cele mai mari bătăi de cap. Pornim întâi acolo unde ne cer cei mai mulți șoferi.</p>
+      <div style="display:flex;gap:12px;align-items:flex-start;background:#FFFFFF;border:1px solid #E4E6E8;border-radius:16px;padding:16px 18px;max-width:460px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+        <span style="font:500 14px/1.55 var(--pj);color:#4A5857">Parqie nu funcționează încă în aceste zone. Votul tău ne ajută să decidem de unde pornim.</span>
+      </div>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #E4E6E8;border-radius:28px;padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:18px;box-shadow:0 12px 32px rgba(5,51,51,0.06)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <span style="font:800 18px/24px var(--pj);color:#000">Votează zona ta</span>
+        <span style="font:500 13px/18px var(--pj);color:#4A5857">Alegi una, durează 10 secunde</span>
+      </div>
+      <div style="display:grid;grid-template-columns:{{ zoneGrid }};gap:10px">
+        <sc-for list="{{ zones }}" as="z" hint-placeholder-count="7">
+          <button onClick="{{ z.pick }}" style="height:80px;padding:14px;border-radius:16px;border:1.5px solid {{ z.border }};background:{{ z.bg }};cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;transition:background 200ms ease-out,border-color 200ms ease-out" style-active="transform:scale(0.98)">
+            <span style="max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:700 16px/1.2 var(--pj);color:{{ z.fg }}">{{ z.name }}</span>
+            <span style="display:flex;align-items:center;gap:5px;font:600 12px/1 var(--pj);color:{{ z.sub }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{ z.icon }}"></path></svg>{{ z.label }}</span>
+          </button>
+        </sc-for>
+        <button onClick="{{ pickOther }}" style="height:80px;padding:14px;border-radius:16px;border:1.5px solid {{ otherBorder }};background:{{ otherBg }};cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;transition:background 200ms ease-out">
+          <span style="font:700 16px/1.2 var(--pj);color:{{ otherFg }}">Altă zonă</span>
+          <span style="display:flex;align-items:center;gap:5px;font:600 12px/1 var(--pj);color:{{ otherSub }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Scrie-o tu</span>
+        </button>
+      </div>
+      <input value="{{ detail }}" onChange="{{ onDetail }}" placeholder="{{ detailPh }}" style="height:54px;border-radius:15px;border:1px solid #D3D4D8;background:#fff;padding:0 16px;font:500 16px/24px var(--pj);color:#000">
+      <button onClick="{{ submitZone }}" disabled="{{ zoneDisabled }}" style="height:56px;border-radius:20px;border:0;background:{{ zoneBtnBg }};color:{{ zoneBtnFg }};font:700 15px/20px var(--pj);cursor:{{ zoneCursor }};display:flex;align-items:center;justify-content:center;gap:8px;transition:background 200ms ease-out">{{ zoneCta }}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+    </div>
+  </div>
+</section>
+
+<section id="aplicatie" data-screen-label="Aplicația" style="position:relative;overflow:hidden;background:#053333;padding:clamp(80px,9vw,128px) clamp(20px,5vw,64px)">
+    <div style="position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(48px,5vw,72px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:clamp(28px,3vw,40px);min-width:0">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:16px"><span style="width:40px;height:40px;border-radius:50%;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font:800 clamp(30px,3.8vw,50px)/1.05 var(--pj);letter-spacing:-0.04em;color:#F9F9F9">Știi unde parchezi.</span></div>
+        <div style="display:flex;align-items:center;gap:16px"><span style="width:40px;height:40px;border-radius:50%;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font:800 clamp(30px,3.8vw,50px)/1.05 var(--pj);letter-spacing:-0.04em;color:#F9F9F9">Știi cât costă.</span></div>
+        <div style="display:flex;align-items:center;gap:16px"><span style="width:40px;height:40px;border-radius:50%;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font:800 clamp(30px,3.8vw,50px)/1.05 var(--pj);letter-spacing:-0.04em;color:#ACFF78">Știi că ai loc.</span></div>
+      </div>
+      <div style="height:1px;background:#1A5252"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <h2 style="margin:0;font:800 clamp(24px,2.3vw,30px)/1.15 var(--pj);letter-spacing:-0.02em;color:#F9F9F9">Parqie vine pe iPhone și Android.</h2>
+        <p style="margin:0;font:400 17px/1.6 var(--pj);color:#B9CBCA;max-width:460px">Precomandă aplicația acum și o ai în telefon din prima zi.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="#" style="display:flex;align-items:center;gap:12px;height:60px;padding:0 22px 0 18px;border-radius:14px;background:#000000;border:1px solid #3A4444;color:#FFFFFF;transition:border-color 200ms ease-out" style-hover="border-color:#ACFF78;color:#FFFFFF">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"></path></svg>
+          <span style="display:flex;flex-direction:column;gap:3px"><span style="font:500 11px/1 var(--pj)">Precomandă pe</span><span style="font:700 19px/1 var(--pj);letter-spacing:-0.01em">App Store</span></span>
+        </a>
+        <a href="#" style="display:flex;align-items:center;gap:12px;height:60px;padding:0 22px 0 18px;border-radius:14px;background:#000000;border:1px solid #3A4444;color:#FFFFFF;transition:border-color 200ms ease-out" style-hover="border-color:#ACFF78;color:#FFFFFF">
+          <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#00D7FE" d="M3.6 2.2 13.3 12 3.6 21.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"></path><path fill="#FFCE00" d="m16.6 15.3-3.3-3.3 3.3-3.3 3.7 2.1c1 .6 1 1.8 0 2.4z"></path><path fill="#FF3A44" d="M13.3 12 3.6 21.8c.3.2.8.2 1.3-.1l11.7-6.4z"></path><path fill="#00F076" d="M13.3 12 16.6 8.7 4.9 2.3c-.5-.3-1-.3-1.3-.1z"></path></svg>
+          <span style="display:flex;flex-direction:column;gap:3px"><span style="font:500 11px/1 var(--pj)">Pre-înregistrare pe</span><span style="font:700 19px/1 var(--pj);letter-spacing:-0.01em">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div ref="{{ stageRef }}" style="position:relative;width:100%;height:{{ stageH }}px;min-width:0">
+      <div style="position:absolute;left:50%;top:0;width:600px;height:680px;margin-left:-300px;transform:scale({{ stageScale }});transform-origin:50% 0">
+        <div style="position:absolute;left:40px;right:40px;top:120px;bottom:40px;border-radius:50%;background:radial-gradient(closest-side, rgba(172,255,120,0.22), rgba(172,255,120,0))"></div>
+
+        <div style="position:absolute;left:10px;top:92px;width:280px;height:580px;border-radius:52px;padding:4px;background:linear-gradient(150deg,#56605F 0%,#1B2121 30%,#0E1212 65%,#434D4C 100%);box-shadow:0 40px 80px rgba(0,0,0,0.45)">
+          <span style="position:absolute;left:-3px;top:118px;width:3px;height:30px;border-radius:2px;background:#2E3636"></span>
+          <span style="position:absolute;left:-3px;top:166px;width:3px;height:54px;border-radius:2px;background:#2E3636"></span>
+          <span style="position:absolute;left:-3px;top:230px;width:3px;height:54px;border-radius:2px;background:#2E3636"></span>
+          <span style="position:absolute;right:-3px;top:180px;width:3px;height:84px;border-radius:2px;background:#2E3636"></span>
+          <div style="position:relative;width:100%;height:100%;border-radius:48px;background:#050707;padding:9px">
+            <div style="position:absolute;top:19px;left:50%;margin-left:-46px;width:92px;height:27px;border-radius:999px;background:#000000;z-index:2"></div>
+            <div style="width:100%;height:100%;border-radius:39px;overflow:hidden;background:#F9F9F9;display:flex;flex-direction:column;position:relative">
+              <div style="height:50px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:4px 26px 0 30px;font:700 15px/1 var(--pj);color:#000">
+                <span>9:41</span>
+                <span style="display:flex;gap:5px;align-items:center"><svg width="17" height="11" viewBox="0 0 17 11" fill="#000"><rect x="0" y="7" width="3" height="4" rx="1"></rect><rect x="4.5" y="5" width="3" height="6" rx="1"></rect><rect x="9" y="2.5" width="3" height="8.5" rx="1"></rect><rect x="13.5" y="0" width="3" height="11" rx="1"></rect></svg><svg width="24" height="12" viewBox="0 0 24 12"><rect x="0.5" y="0.5" width="20" height="11" rx="3.2" fill="none" stroke="#000" opacity=".4"></rect><rect x="2" y="2" width="15" height="8" rx="2" fill="#000"></rect><rect x="21.5" y="4" width="1.8" height="4" rx="0.8" fill="#000" opacity=".4"></rect></svg></span>
+              </div>
+              <div style="padding:10px 16px 0;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="width:36px;height:36px;border-radius:11px;background:#053333;display:grid;place-items:center"><img src="assets/logo-mark-lime.svg" alt="" style="height:20px"></span>
+                  <span style="width:36px;height:36px;border-radius:50%;background:#EDF1F0;display:grid;place-items:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></span>
+                </div>
+                <div style="font:800 25px/1.1 var(--pj);letter-spacing:-0.03em;color:#000">Unde mergi azi?</div>
+                <div style="display:flex;align-items:center;gap:9px;background:#fff;border:2px solid #053333;border-radius:14px;height:48px;padding:0 12px;font:600 14px/1 var(--pj);color:#000"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Centru, Chișinău</div>
+                <div style="display:flex;gap:4px;background:#EDF1F0;border-radius:12px;padding:4px;height:40px">
+                  <span style="flex:1;border-radius:9px;background:#FFFFFF;box-shadow:0 1px 2px rgba(5,51,51,0.1);display:grid;place-items:center;font:700 12px/1 var(--pj);color:#000">Azi</span>
+                  <span style="flex:1;display:grid;place-items:center;font:600 12px/1 var(--pj);color:#4A5857">Mâine</span>
+                  <span style="flex:1;display:grid;place-items:center;font:600 12px/1 var(--pj);color:#4A5857">Altă zi</span>
+                </div>
+                <div style="background:#FFFFFF;border:1px solid #E1E6E5;border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px">
+                  <div style="display:flex;flex-direction:column;gap:5px"><span style="font:600 11px/1 var(--pj);color:#4A5857">De la</span><span style="font:800 18px/1 var(--pj);color:#000">14:00</span></div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                  <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><span style="font:600 11px/1 var(--pj);color:#4A5857">Până la</span><span style="font:800 18px/1 var(--pj);color:#000">16:00</span></div>
+                </div>
+                <div style="height:48px;border-radius:999px;background:#ACFF78;display:grid;place-items:center;font:700 14px/1 var(--pj);color:#000">Caută locuri</div>
+              </div>
+              <div style="margin-top:auto;height:70px;flex:none;border-top:1px solid #E4E6E8;background:#FFFFFF;display:grid;grid-template-columns:repeat(3,1fr);padding:10px 8px 0">
+                <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:700 10px/1 var(--pj);color:#053333"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Caută</span>
+                <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:600 10px/1 var(--pj);color:#8A9594"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A9594" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Rezervări</span>
+                <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:600 10px/1 var(--pj);color:#8A9594"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A9594" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Cont</span>
+              </div>
+              <span style="position:absolute;bottom:7px;left:50%;margin-left:-54px;width:108px;height:4px;border-radius:999px;background:#000000"></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:absolute;left:310px;top:0;width:280px;height:580px;border-radius:52px;padding:4px;background:linear-gradient(150deg,#56605F 0%,#1B2121 30%,#0E1212 65%,#434D4C 100%);box-shadow:0 40px 80px rgba(0,0,0,0.5)">
+          <span style="position:absolute;left:-3px;top:118px;width:3px;height:30px;border-radius:2px;background:#2E3636"></span>
+          <span style="position:absolute;left:-3px;top:166px;width:3px;height:54px;border-radius:2px;background:#2E3636"></span>
+          <span style="position:absolute;left:-3px;top:230px;width:3px;height:54px;border-radius:2px;background:#2E3636"></span>
+          <span style="position:absolute;right:-3px;top:180px;width:3px;height:84px;border-radius:2px;background:#2E3636"></span>
+          <div style="position:relative;width:100%;height:100%;border-radius:48px;background:#050707;padding:9px">
+            <div style="position:absolute;top:19px;left:50%;margin-left:-46px;width:92px;height:27px;border-radius:999px;background:#000000;z-index:2"></div>
+            <div style="width:100%;height:100%;border-radius:39px;overflow:hidden;background:#053333;display:flex;flex-direction:column;position:relative">
+              <div style="height:50px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:4px 26px 0 30px;font:700 15px/1 var(--pj);color:#F9F9F9">
+                <span>9:41</span>
+                <span style="display:flex;gap:5px;align-items:center"><svg width="17" height="11" viewBox="0 0 17 11" fill="#F9F9F9"><rect x="0" y="7" width="3" height="4" rx="1"></rect><rect x="4.5" y="5" width="3" height="6" rx="1"></rect><rect x="9" y="2.5" width="3" height="8.5" rx="1"></rect><rect x="13.5" y="0" width="3" height="11" rx="1"></rect></svg><svg width="24" height="12" viewBox="0 0 24 12"><rect x="0.5" y="0.5" width="20" height="11" rx="3.2" fill="none" stroke="#F9F9F9" opacity=".5"></rect><rect x="2" y="2" width="15" height="8" rx="2" fill="#F9F9F9"></rect><rect x="21.5" y="4" width="1.8" height="4" rx="0.8" fill="#F9F9F9" opacity=".5"></rect></svg></span>
+              </div>
+              <div style="padding:8px 16px 0;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="width:34px;height:34px;border-radius:50%;background:#0B4040;display:grid;place-items:center;flex:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F9F9F9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+                  <span style="font:700 15px/1 var(--pj);color:#F9F9F9">Rezervarea ta</span>
+                </div>
+                <div style="background:#0B4040;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:14px">
+                  <div style="display:flex;justify-content:space-between;align-items:center">
+                    <span style="display:flex;align-items:center;gap:5px;background:#ACFF78;border-radius:999px;padding:5px 10px 5px 7px;font:700 11px/1 var(--pj);color:#053333"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Confirmat</span>
+                    <span style="font:600 12px/1 var(--pj);color:#8FB3B3">Azi</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px">
+                    <span style="font:800 28px/1 var(--pj);letter-spacing:-0.03em;color:#F9F9F9">14:00–16:00</span>
+                    <span style="font:500 13px/1.2 var(--pj);color:#8FB3B3">2 ore · Centru, Chișinău</span>
+                  </div>
+                  <div style="height:1px;background:#1A5252"></div>
+                  <div style="display:flex;justify-content:space-between;font:500 13px/1 var(--pj)"><span style="color:#8FB3B3">Loc</span><span style="font-weight:700;color:#F9F9F9">Nr. 12</span></div>
+                  <div style="display:flex;justify-content:space-between;font:500 13px/1 var(--pj)"><span style="color:#8FB3B3">Plată</span><span style="font-weight:700;color:#ACFF78">Achitat</span></div>
+                  <div style="display:flex;align-items:center;gap:10px;background:#053333;border-radius:12px;padding:10px">
+                    <span style="width:30px;height:30px;border-radius:9px;background:#ACFF78;display:grid;place-items:center;flex:none"><img src="assets/logo-mark-green.svg" alt="" style="height:17px"></span>
+                    <span style="font:600 12px/1.3 var(--pj);color:#F9F9F9">Locul e ținut pentru tine până la 14:15</span>
+                  </div>
+                </div>
+                <div style="height:48px;border-radius:999px;background:#ACFF78;display:flex;align-items:center;justify-content:center;gap:8px;font:700 14px/1 var(--pj);color:#000"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 22 2l-9 19-2-8-8-2z"></path></svg>Pornește navigarea</div>
+              </div>
+              <div style="margin-top:auto;height:70px;flex:none;border-top:1px solid #0F4A4A;background:#053333;display:grid;grid-template-columns:repeat(3,1fr);padding:10px 8px 0">
+                <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:600 10px/1 var(--pj);color:#6F9393"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6F9393" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Caută</span>
+                <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:700 10px/1 var(--pj);color:#ACFF78"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Rezervări</span>
+                <span style="display:flex;flex-direction:column;align-items:center;gap:4px;font:600 10px/1 var(--pj);color:#6F9393"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6F9393" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Cont</span>
+              </div>
+              <span style="position:absolute;bottom:7px;left:50%;margin-left:-54px;width:108px;height:4px;border-radius:999px;background:#F9F9F9"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Întrebări frecvente" style="background:#F9F9F9;padding:clamp(80px,9vw,128px) clamp(20px,5vw,64px)">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)">
+    <h2 style="margin:0;font:500 clamp(40px,4.6vw,64px)/1.1 var(--mo);letter-spacing:-0.03em;color:#000">Întrebări frecvente</h2>
+    <div style="display:grid;grid-template-columns:{{ faqGrid }};gap:24px;align-items:start">
+      <sc-for list="{{ faqCols }}" as="col" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+          <sc-for list="{{ col.items }}" as="f" hint-placeholder-count="3">
+            <div style="background:#FFFFFF;border-radius:16px;border:1px solid {{ f.border }};box-shadow:0 10px 30px rgba(0,0,0,0.05);transition:border-color 200ms ease-out">
+              <button onClick="{{ f.toggle }}" style="width:100%;display:flex;align-items:center;gap:24px;padding:30px clamp(20px,2.6vw,36px);background:none;border:0;cursor:pointer;text-align:left">
+                <span style="width:36px;height:36px;border-radius:50%;border:1.5px solid {{ f.ring }};display:grid;place-items:center;flex:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.2" stroke-linecap="round"><path d="{{ f.icon }}"></path></svg></span>
+                <span style="font:500 clamp(17px,1.5vw,20px)/1.35 var(--mo);color:{{ f.qColor }}">{{ f.q }}</span>
+              </button>
+              <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                <p style="margin:0;padding:0 clamp(20px,2.6vw,36px) 30px calc(clamp(20px,2.6vw,36px) + 60px);font:400 16px/1.65 var(--mo);color:#191919">{{ f.a }}</p>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<footer data-screen-label="Footer" style="background:#053333;padding:clamp(64px,7vw,96px) clamp(20px,5vw,64px) 32px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:{{ footGrid }};gap:48px 32px">
+      <div style="grid-column:{{ footLogoSpan }};display:flex;flex-direction:column;gap:16px">
+        <img src="assets/parqie-logo.png" alt="parqie" style="height:44px;align-self:flex-start">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font:600 16px/20px var(--pj);color:#F9F9F9">Ai nevoie de ajutor?</span>
+        <a href="#cum" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Cum funcționează?</a>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Ajutor</a>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Contactează-ne</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span id="despre" style="font:600 16px/20px var(--pj);color:#F9F9F9">Despre noi</span>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Job-uri</a>
+        <a href="#" id="business" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Devino partener</a>
+        <a href="#zone" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Lista de așteptare</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font:600 16px/20px var(--pj);color:#F9F9F9">Legal</span>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Termeni</a>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Confidențialitate</a>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Cookies</a>
+        <a href="#" style="font:400 16px/20px var(--pj);color:#A9BDBD" style-hover="color:#ACFF78">Harta site</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font:600 16px/20px var(--pj);color:#F9F9F9">Descarcă aplicația</span>
+        <a href="#aplicatie" style="display:flex;align-items:center;gap:10px;height:48px;width:176px;padding:0 14px 0 12px;border-radius:10px;background:#000;border:1px solid #3A4444;color:#fff" style-hover="border-color:#ACFF78;color:#fff">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"></path></svg>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font:500 10px/1 var(--pj)">Precomandă pe</span><span style="font:700 15px/1 var(--pj)">App Store</span></span>
+        </a>
+        <a href="#aplicatie" style="display:flex;align-items:center;gap:10px;height:48px;width:176px;padding:0 14px 0 12px;border-radius:10px;background:#000;border:1px solid #3A4444;color:#fff" style-hover="border-color:#ACFF78;color:#fff">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#00D7FE" d="M3.6 2.2 13.3 12 3.6 21.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"></path><path fill="#FFCE00" d="m16.6 15.3-3.3-3.3 3.3-3.3 3.7 2.1c1 .6 1 1.8 0 2.4z"></path><path fill="#FF3A44" d="M13.3 12 3.6 21.8c.3.2.8.2 1.3-.1l11.7-6.4z"></path><path fill="#00F076" d="M13.3 12 16.6 8.7 4.9 2.3c-.5-.3-1-.3-1.3-.1z"></path></svg>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font:500 10px/1 var(--pj)">Pre-înregistrare pe</span><span style="font:700 15px/1 var(--pj)">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+    <div style="border-top:1px solid #174C4C;padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font:400 14px/20px var(--pj);color:#A9BDBD">
+      <span>© 2026 Parqie. Chișinău, Moldova.</span>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="#" style="color:#A9BDBD" style-hover="color:#ACFF78">Instagram</a>
+        <a href="#" style="color:#A9BDBD" style-hover="color:#ACFF78">Facebook</a>
+        <a href="#" style="color:#A9BDBD" style-hover="color:#ACFF78">TikTok</a>
+        <a href="#" style="color:#A9BDBD" style-hover="color:#ACFF78">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ modal }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:50;background:rgba(3,30,30,0.78);display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ stop }}" style="width:100%;max-width:460px;background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,36px);box-shadow:0 12px 32px rgba(5,51,51,0.12);display:flex;flex-direction:column;gap:18px;position:relative">
+      <button onClick="{{ closeModal }}" aria-label="Închide" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:0;background:#F1F3F3;cursor:pointer;display:grid;place-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:8px;padding-right:40px">
+            <h3 style="margin:0;font:800 28px/1.1 var(--pj);letter-spacing:-0.03em;color:#000">Mai e un pas.</h3>
+            <p style="margin:0;font:400 15px/1.55 var(--pj);color:#4A5857">Lasă-ne e-mailul și îți scriem primii când Parqie pornește în zona ta.</p>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px;font:700 13px/18px var(--pj);color:#000">Unde ai nevoie de parcare
+            <input value="{{ loc }}" onChange="{{ onLoc }}" placeholder="Strada sau cartierul" style="height:52px;border-radius:15px;border:1px solid #D3D4D8;padding:0 16px;font:500 16px/24px var(--pj);color:#000;background:#fff">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:700 13px/18px var(--pj);color:#000">E-mail
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" onKeyDown="{{ onEmailKey }}" placeholder="nume@exemplu.md" style="height:52px;border-radius:15px;border:1px solid {{ emailBorder }};padding:0 16px;font:500 16px/24px var(--pj);color:#000;background:#fff">
+          </label>
+          <sc-if value="{{ err }}" hint-placeholder-val="{{ false }}"><span style="font:500 13px/18px var(--pj);color:#FF2B3A;margin-top:-10px">{{ err }}</span></sc-if>
+          <button onClick="{{ submit }}" style="height:56px;border-radius:20px;border:0;background:#ACFF78;color:#000;font:700 15px/20px var(--pj);cursor:pointer" style-hover="background:#9FEF6C">Intră pe lista de așteptare</button>
+          <span style="font:400 12px/18px var(--pj);color:#4A5857;text-align:center">E gratuit. Îți scriem doar când avem ceva important de spus.</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;padding:8px 0">
+          <span style="width:56px;height:56px;border-radius:16px;background:#ACFF78;display:grid;place-items:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <h3 style="margin:0;font:800 28px/1.1 var(--pj);letter-spacing:-0.03em;color:#000">Gata, ești pe listă.</h3>
+          <p style="margin:0;font:400 16px/1.55 var(--pj);color:#4A5857">{{ doneText }}</p>
+          <button onClick="{{ closeModal }}" style="height:48px;padding:0 24px;border-radius:15px;border:2px solid #053333;background:transparent;color:#053333;font:700 14px/20px var(--pj);cursor:pointer;margin-top:8px">Închide</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;headline&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Pleci de acasă cu parcarea deja rezolvată.&quot;,&quot;Nu mai da ture. Rezervă-ți locul.&quot;,&quot;Locul tău te așteaptă. Nu invers.&quot;,&quot;Ajungi. Parchezi. Atât.&quot;],&quot;default&quot;:&quot;Pleci de acasă cu parcarea deja rezolvată.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;logo3d&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Verde închis&quot;,&quot;Lime&quot;],&quot;default&quot;:&quot;Verde închis&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;animate3d&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1280, menu: false, address: '', modal: false, loc: '', email: '', eaEmail: '', err: '', done: false, zone: null, detail: '', faq: 0, stageW: 600 };
+  stageRef = React.createRef();
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    this.onR();
+    window.addEventListener('resize', this.onR);
+    this.observe();
+  }
+  componentDidUpdate() { this.observe(); }
+  observe() {
+    const el = this.stageRef.current;
+    if (!el || this.observed === el || !window.ResizeObserver) return;
+    this.ro && this.ro.disconnect();
+    this.ro = new ResizeObserver(es => {
+      const w = es[0].contentRect.width;
+      if (Math.abs(w - this.state.stageW) > 1) this.setState({ stageW: w });
+    });
+    this.ro.observe(el);
+    this.observed = el;
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); this.ro && this.ro.disconnect(); }
+  open(loc, email) { this.setState(s => ({ modal: true, menu: false, loc: loc || '', email: email ?? s.email, done: false, err: '' })); }
+  submit() {
+    if (!/\S+@\S+\.\S+/.test(this.state.email)) return this.setState({ err: 'Adresa de e-mail nu pare corectă.' });
+    this.setState({ done: true, err: '' });
+  }
+  pin3d() {
+    const variant = (this.props.logo3d ?? 'Verde închis') === 'Lime' ? 'lime' : 'dark';
+    const anim = this.props.animate3d ?? true;
+    const key = variant + String(anim);
+    if (this._m && this._mk === key) return this._m;
+    const h = React.createElement;
+    const P = [
+      { i: 1, l: 18.878, t: 1.499, w: 62.245, h: 29.085, z: 36, dx: 0, dy: -6, d: 0 },
+      { i: 2, l: 1.701, t: 16.642, w: 32.993, h: 52.174, z: 24, dx: -6, dy: 0, d: -1.5 },
+      { i: 3, l: 65.306, t: 16.642, w: 32.993, h: 52.174, z: 24, dx: 6, dy: 0, d: -1.5 },
+      { i: 4, l: 21.939, t: 57.571, w: 56.122, h: 40.48, z: 36, dx: 0, dy: 6, d: -3 },
+    ];
+    const pieces = P.map(p => h('div', { key: p.i, style: { position: 'absolute', left: p.l + '%', top: p.t + '%', width: p.w + '%', height: p.h + '%', transform: `translate3d(${p.dx}px,${p.dy}px,${p.z}px)` } },
+      h('img', { src: `assets/pinsym-${variant}-${p.i}.png`, alt: '', draggable: false, style: { width: '100%', height: '100%', display: 'block', filter: 'drop-shadow(0 22px 26px rgba(0,0,0,0.4))', animation: anim ? `pqBob 6s ease-in-out ${p.d}s infinite` : 'none' } })));
+    this._m = h('div', { role: 'img', 'aria-label': 'Pin Parqie 3D deasupra unui loc de parcare', style: { position: 'absolute', inset: 0, transformStyle: 'preserve-3d', transform: 'rotateX(4deg) rotateY(-12deg)', animation: anim ? 'pqSway 12s ease-in-out infinite' : 'none' } }, pieces);
+    this._mk = key;
+    return this._m;
+  }
+  renderVals() {
+    const s = this.state;
+    const wide = s.w >= 1000;
+    const heads = {
+      'Pleci de acasă cu parcarea deja rezolvată.': ['Pleci de acasă cu ', 'parcarea deja rezolvată.'],
+      'Nu mai da ture. Rezervă-ți locul.': ['Nu mai da ture. ', 'Rezervă-ți locul.'],
+      'Locul tău te așteaptă. Nu invers.': ['Locul tău te așteaptă. ', 'Nu invers.'],
+      'Ajungi. Parchezi. Atât.': ['Ajungi. Parchezi. ', 'Atât.'],
+    };
+    const [h1a, h1b] = heads[this.props.headline] || heads['Pleci de acasă cu parcarea deja rezolvată.'];
+    const check = 'M20 6 9 17l-5-5', plus = 'M12 5v14M5 12h14';
+    const zones = ['Centru', 'Botanica', 'Rîșcani', 'Buiucani', 'Ciocana', 'Telecentru', 'Sculeni'].map(z => {
+      const on = s.zone === z;
+      return { name: z, bg: on ? '#053333' : '#FFFFFF', fg: on ? '#F9F9F9' : '#000000', sub: on ? '#ACFF78' : '#4A5857',
+        border: on ? '#053333' : '#E1E4E4', label: on ? 'Ales' : 'Votează', icon: on ? check : plus,
+        pick: () => this.setState({ zone: on ? null : z }) };
+    });
+    const isOther = s.zone === '__other';
+    const canSubmit = s.zone && (!isOther || s.detail.trim());
+    const faqData = [
+      ['Când se lansează Parqie?', 'Pornim în Chișinău în curând. Cei de pe lista de așteptare află primii data exactă și intră înaintea celorlalți.'],
+      ['Costă ceva să intru pe listă?', 'Nu. Înscrierea e gratuită și nu te obligă la nimic.'],
+      ['În ce zone va funcționa?', 'Începem cu zonele unde ne cer cei mai mulți șoferi. Spune-ne unde ai nevoie de parcare și ne ajuți să alegem.'],
+      ['Va fi pe iPhone și pe Android?', 'Da, pe ambele. Poți precomanda aplicația din App Store sau te poți pre-înregistra pe Google Play.'],
+      ['Ce se întâmplă după ce mă înscriu?', 'Primești un e-mail de confirmare. După aceea îți scriem doar când avem ceva important, cum ar fi ziua lansării.'],
+      ['Ce date îmi cereți la înscriere?', 'Doar adresa de e-mail și zona unde ai nevoie de parcare. Nimic mai mult.'],
+    ];
+    const faqs = faqData.map(([q, a], i) => {
+      const open = s.faq === i;
+      return { q, a, open, icon: open ? 'M5 12h14' : plus, ring: open ? '#053333' : '#6E8C8C',
+        qColor: open ? '#000000' : '#7A7C80', border: open ? '#6E8C8C' : '#FFFFFF',
+        toggle: () => this.setState({ faq: open ? -1 : i }) };
+    });
+    const twoCol = s.w >= 900;
+    const threeCol = s.w >= 900;
+    const stageScale = Math.min(1, s.stageW / 600);
+    const loc = s.loc.trim();
+    return {
+      wide, narrow: !wide, threeCol, zoneGrid: s.w >= 560 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))', threeGrid: threeCol ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)', menuOpen: !wide && s.menu,
+      menuIcon: s.menu ? 'M18 6 6 18M6 6l12 12' : 'M4 7h16M4 12h16M4 17h16',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      closeMenu: () => this.setState({ menu: false }),
+      h1a, h1b,
+      pin3d: this.pin3d(),
+      address: s.address,
+      onAddress: e => this.setState({ address: e.target.value }),
+      onAddressKey: e => { if (e.key === 'Enter') this.open(s.address); },
+      openHero: () => this.open(s.address),
+      openBlank: () => this.open(s.address),
+      eaEmail: s.eaEmail,
+      onEaEmail: e => this.setState({ eaEmail: e.target.value }),
+      onEaKey: e => { if (e.key === 'Enter') this.open(s.address, s.eaEmail); },
+      openEa: () => this.open(s.address, s.eaEmail),
+      zones,
+      otherBg: isOther ? '#053333' : '#FFFFFF', otherFg: isOther ? '#F9F9F9' : '#000000',
+      otherSub: isOther ? '#ACFF78' : '#4A5857', otherBorder: isOther ? '#053333' : '#E1E4E4',
+      pickOther: () => this.setState({ zone: isOther ? null : '__other' }),
+      detail: s.detail, onDetail: e => this.setState({ detail: e.target.value }),
+      detailPh: isOther ? 'Scrie zona sau adresa. Ex: Durlești' : s.zone ? `Unde anume în ${s.zone}? (opțional)` : 'Adresa exactă, dacă vrei (opțional)',
+      zoneCta: !s.zone ? 'Alege mai întâi o zonă' : isOther ? 'Vreau Parqie aici' : `Vreau Parqie în ${s.zone}`,
+      zoneDisabled: !canSubmit,
+      zoneBtnBg: canSubmit ? '#ACFF78' : '#E8ECEB', zoneBtnFg: canSubmit ? '#000000' : '#6A7675', zoneCursor: canSubmit ? 'pointer' : 'not-allowed',
+      submitZone: () => { if (canSubmit) this.open([isOther ? '' : s.zone, s.detail.trim()].filter(Boolean).join(', ')); },
+      stageRef: this.stageRef,
+      stageScale, stageH: Math.round(680 * stageScale),
+      faqGrid: twoCol ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      faqCols: twoCol ? [{ items: faqs.filter((_, i) => i % 2 === 0) }, { items: faqs.filter((_, i) => i % 2 === 1) }] : [{ items: faqs }],
+      footGrid: s.w >= 1100 ? 'minmax(200px,1.4fr) repeat(4,minmax(0,1fr))' : s.w >= 640 ? 'repeat(4,minmax(0,1fr))' : 'repeat(2,minmax(0,1fr))',
+      footLogoSpan: s.w >= 1100 ? 'auto' : '1 / -1',
+      modal: s.modal, done: s.done, notDone: !s.done,
+      closeModal: () => this.setState({ modal: false }),
+      stop: e => e.stopPropagation(),
+      loc: s.loc, onLoc: e => this.setState({ loc: e.target.value }),
+      email: s.email, onEmail: e => this.setState({ email: e.target.value, err: '' }),
+      onEmailKey: e => { if (e.key === 'Enter') this.submit(); },
+      emailBorder: s.err ? '#FF2B3A' : '#D3D4D8',
+      err: s.err,
+      submit: () => this.submit(),
+      doneText: loc ? `Am notat ${loc}. Când Parqie pornește acolo, afli primul.` : 'Când pornim în Chișinău, afli primul.',
+    };
+  }
+}
+</script>
+</body>
+</html>

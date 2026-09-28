@@ -1,0 +1,188 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "ui_kits/driver-app/**",
+              "ui_kits/partner/**",
+              "ui_kits/web/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Inter))/i]",
+        "message": "Font not provided by the design system. Available: Inter."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--accent",
+      "--accent-fg",
+      "--bg",
+      "--bg-elevated",
+      "--bg-inverse",
+      "--bg-inverse-2",
+      "--border",
+      "--border-strong",
+      "--danger",
+      "--dur-1",
+      "--dur-2",
+      "--dur-3",
+      "--ease-emph",
+      "--ease-standard",
+      "--fg-1",
+      "--fg-2",
+      "--fg-3",
+      "--fg-on-dark",
+      "--fg-on-lime",
+      "--font-sans",
+      "--fw-bold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--fz-body",
+      "--fz-body-sm",
+      "--fz-caption",
+      "--fz-display",
+      "--fz-h1",
+      "--fz-h2",
+      "--fz-h3",
+      "--lh-normal",
+      "--lh-relaxed",
+      "--lh-tight",
+      "--pq-black",
+      "--pq-dark-green",
+      "--pq-grey",
+      "--pq-grey-text",
+      "--pq-lime",
+      "--pq-pure-white",
+      "--pq-red",
+      "--pq-true-black",
+      "--pq-white",
+      "--r-card",
+      "--r-lg",
+      "--r-md",
+      "--r-pill",
+      "--r-sm",
+      "--shadow-lg",
+      "--shadow-lime",
+      "--shadow-md",
+      "--shadow-sm",
+      "--sp-1",
+      "--sp-10",
+      "--sp-12",
+      "--sp-16",
+      "--sp-2",
+      "--sp-3",
+      "--sp-4",
+      "--sp-5",
+      "--sp-6",
+      "--sp-8"
+    ],
+    "tokenKinds": {
+      "--pq-dark-green": "color",
+      "--pq-lime": "color",
+      "--pq-white": "color",
+      "--pq-pure-white": "color",
+      "--pq-black": "color",
+      "--pq-true-black": "color",
+      "--pq-red": "color",
+      "--pq-grey": "color",
+      "--pq-grey-text": "font",
+      "--bg": "color",
+      "--bg-elevated": "color",
+      "--bg-inverse": "color",
+      "--bg-inverse-2": "color",
+      "--fg-1": "color",
+      "--fg-2": "color",
+      "--fg-3": "color",
+      "--fg-on-dark": "color",
+      "--fg-on-lime": "color",
+      "--accent": "color",
+      "--accent-fg": "color",
+      "--danger": "color",
+      "--border": "color",
+      "--border-strong": "color",
+      "--font-sans": "font",
+      "--fz-display": "spacing",
+      "--fz-h1": "spacing",
+      "--fz-h2": "spacing",
+      "--fz-h3": "spacing",
+      "--fz-body": "spacing",
+      "--fz-body-sm": "spacing",
+      "--fz-caption": "spacing",
+      "--lh-tight": "spacing",
+      "--lh-normal": "spacing",
+      "--lh-relaxed": "other",
+      "--fw-regular": "other",
+      "--fw-medium": "other",
+      "--fw-semibold": "other",
+      "--fw-bold": "other",
+      "--r-sm": "spacing",
+      "--r-md": "spacing",
+      "--r-lg": "spacing",
+      "--r-pill": "spacing",
+      "--r-card": "spacing",
+      "--sp-1": "spacing",
+      "--sp-2": "spacing",
+      "--sp-3": "spacing",
+      "--sp-4": "spacing",
+      "--sp-5": "spacing",
+      "--sp-6": "spacing",
+      "--sp-8": "spacing",
+      "--sp-10": "spacing",
+      "--sp-12": "spacing",
+      "--sp-16": "spacing",
+      "--shadow-sm": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-lg": "shadow",
+      "--shadow-lime": "shadow",
+      "--ease-standard": "other",
+      "--ease-emph": "other",
+      "--dur-1": "other",
+      "--dur-2": "other",
+      "--dur-3": "other"
+    },
+    "fontFamilies": [
+      "Inter"
+    ]
+  }
+}

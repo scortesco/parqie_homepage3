@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/parqie-design-system-019dd414-65a2-7a64-843f-8dfdef8ccf6d/colors_and_type.css">
+<script src="_ds/parqie-design-system-019dd414-65a2-7a64-843f-8dfdef8ccf6d/_ds_bundle.js"></script>
+<style>body{margin:0;background:#FFFFFF;font-family:'Inter',system-ui,sans-serif;color:#191919;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#053333}input::placeholder{color:#8A8C90}input:focus{outline:2px solid #ACFF78;outline-offset:2px}button:focus-visible{outline:2px solid #ACFF78;outline-offset:2px}html{scroll-behavior:smooth}</style>
+</helmet>
+
+<div style="font-family:var(--font-sans);background:#FFFFFF;min-height:100vh">
+
+<!-- NAV -->
+<nav data-screen-label="Nav" style="position:sticky;top:0;z-index:20;background:#053333;padding:0 clamp(20px,6vw,116px)">
+  <div style="max-width:1140px;margin:0 auto;height:68px;display:flex;align-items:center;gap:32px">
+    <a href="#top" aria-label="Parqie" style="display:flex;align-items:flex-start;gap:3px;flex:none">
+      <img src="assets/logo-mark-lime.svg" alt="" style="height:30px;display:block">
+      <img src="assets/logo-wordmark-lime.svg" alt="parqie" style="height:24.8px;display:block">
+    </a>
+    <div style="flex:1"></div>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:32px">
+        <a href="#cum" style="font:500 14px/20px var(--font-sans);color:#F9F9F9" style-hover="color:#ACFF78">Cum funcționează</a>
+        <a href="#business" style="font:500 14px/20px var(--font-sans);color:#F9F9F9" style-hover="color:#ACFF78">Pentru business</a>
+        <a href="#despre" style="font:500 14px/20px var(--font-sans);color:#F9F9F9" style-hover="color:#ACFF78">Despre noi</a>
+      </div>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:2px;font:600 13px/20px var(--font-sans);color:#F9F9F9;border:1px solid rgba(249,249,249,.25);border-radius:999px;padding:2px">
+      <span style="background:#F9F9F9;color:#053333;border-radius:999px;padding:3px 10px">RO</span>
+      <span style="padding:3px 10px;cursor:pointer">EN</span>
+    </div>
+    <button onClick="{{ openBlank }}" style="height:40px;padding:0 18px;border-radius:20px;border:0;background:#ACFF78;color:#000;font:700 14px/20px var(--font-sans);cursor:pointer;flex:none;transition:background 200ms ease-out" style-hover="background:#9FEF6C">{{ navCta }}</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top" data-screen-label="Hero" style="background:#FFFFFF;padding:clamp(40px,7vw,88px) clamp(20px,6vw,116px) clamp(56px,8vw,104px)">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(40px,6vw,72px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px;min-width:0">
+      <div style="display:flex">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#EEF9E6;color:#053333;border-radius:999px;padding:6px 14px 6px 10px;font:600 13px/18px var(--font-sans)">
+          <span style="width:8px;height:8px;border-radius:50%;background:#053333"></span>
+          Lansăm în curând în Chișinău
+        </span>
+      </div>
+      <h1 style="margin:0;font:700 clamp(42px,6.2vw,76px)/1.0 var(--font-sans);letter-spacing:-0.035em;color:#000;text-wrap:balance">{{ headline }}</h1>
+      <p style="margin:0;font:400 clamp(17px,1.6vw,20px)/1.5 var(--font-sans);color:#3A3C40;max-width:500px;text-wrap:pretty">Găsești, rezervi și plătești parcarea înainte să ajungi. Spune-ne unde ai nevoie de ea — acolo pornim primii.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:560px">
+        <label for="hero-addr" style="font:600 14px/20px var(--font-sans);color:#000">Unde ai nevoie de parcare?</label>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;background:#FFFFFF;border:1px solid #D3D4D8;border-radius:20px;padding:8px;box-shadow:0 12px 32px rgba(5,51,51,0.08)">
+          <div style="flex:1 1 240px;display:flex;align-items:center;gap:10px;padding:0 12px;min-width:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <input id="hero-addr" value="{{ address }}" onChange="{{ onAddress }}" onKeyDown="{{ onAddressKey }}" placeholder="Stradă, zonă sau reper din Chișinău" style="flex:1;min-width:0;height:52px;border:0;outline:none;background:transparent;font:500 17px/24px var(--font-sans);color:#000">
+          </div>
+          <button onClick="{{ openHero }}" style="flex:1 0 auto;height:56px;padding:0 26px;border-radius:15px;border:0;background:#ACFF78;color:#000;font:700 15px/20px var(--font-sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 200ms ease-out,box-shadow 200ms ease-out" style-hover="background:#9FEF6C;box-shadow:0 6px 20px rgba(172,255,120,0.45)" style-active="transform:scale(0.98)">
+            Vreau Parqie aici
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </button>
+        </div>
+        <p style="margin:2px 0 0;font:400 14px/20px var(--font-sans);color:#5A5C60">Intri pe lista de așteptare și ai acces prioritar la lansare. Gratuit.</p>
+      </div>
+      <a href="#cum" style="display:inline-flex;align-items:center;gap:6px;font:600 14px/20px var(--font-sans);color:#053333;align-self:flex-start;border-bottom:1.5px solid #053333;padding-bottom:2px">Vezi cum funcționează</a>
+    </div>
+
+    <!-- hero visual -->
+    <div style="position:relative;background:#053333;border-radius:28px;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:48px 24px">
+      <img src="assets/logo-mark-green.svg" alt="" style="position:absolute;right:-60px;bottom:-90px;height:420px;opacity:1;filter:brightness(1.5)">
+      <div style="position:relative;width:272px;height:560px;background:#0B0B0B;border-radius:46px;padding:9px;box-shadow:0 30px 60px rgba(0,0,0,.35)">
+        <div style="width:100%;height:100%;background:#F9F9F9;border-radius:38px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:600 13px/1 var(--font-sans);color:#000">
+            <span>9:41</span><span style="width:84px;height:24px;background:#0B0B0B;border-radius:999px"></span><span style="letter-spacing:1px">●●●</span>
+          </div>
+          <div style="padding:10px 18px 0;display:flex;flex-direction:column;gap:14px;flex:1">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <img src="assets/logo-mark-green.svg" alt="" style="height:24px">
+              <span style="width:30px;height:30px;border-radius:50%;background:#E8EAE9"></span>
+            </div>
+            <div style="font:700 24px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Unde parchezi azi?</div>
+            <div style="display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #053333;border-radius:15px;height:46px;padding:0 12px;font:500 14px/1 var(--font-sans);color:#000">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+              Centru, Chișinău
+            </div>
+            <div style="display:flex;gap:8px">
+              <span style="flex:1;height:38px;border-radius:12px;background:#053333;color:#F9F9F9;display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--font-sans)">Azi</span>
+              <span style="flex:2;height:38px;border-radius:12px;border:1.5px solid #D3D4D8;color:#000;display:flex;align-items:center;justify-content:center;gap:6px;font:600 13px/1 var(--font-sans)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#053333" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>14:00 – 16:00</span>
+            </div>
+            <div style="background:#fff;border:1px solid #D3D4D8;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:10px;align-items:center">
+                <span style="width:40px;height:40px;border-radius:10px;background:#053333;display:grid;place-items:center;flex:none"><img src="assets/logo-mark-lime.svg" alt="" style="height:22px"></span>
+                <div style="flex:1;min-width:0">
+                  <div style="font:700 14px/1.2 var(--font-sans);color:#000">Loc de parcare</div>
+                  <div style="font:500 12px/1.4 var(--font-sans);color:#6A6C70">4 min pe jos · acoperit</div>
+                </div>
+              </div>
+              <div style="height:1px;background:#EDEEF0"></div>
+              <div style="display:flex;justify-content:space-between;font:500 12px/1.3 var(--font-sans);color:#6A6C70"><span>Preț total, afișat din start</span><span style="font-weight:700;color:#000">✓</span></div>
+            </div>
+            <div style="margin-top:auto;margin-bottom:22px;height:48px;border-radius:999px;background:#ACFF78;display:flex;align-items:center;justify-content:center;font:700 14px/1 var(--font-sans);color:#000">Rezervă locul</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;left:clamp(12px,4%,40px);top:18%;background:#FFFFFF;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 32px rgba(0,0,0,.18)">
+        <span style="width:28px;height:28px;border-radius:50%;background:#ACFF78;display:grid;place-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <div><div style="font:700 13px/1.2 var(--font-sans);color:#000">Loc rezervat</div><div style="font:500 11px/1.3 var(--font-sans);color:#6A6C70">Te așteaptă la 14:00</div></div>
+      </div>
+      <div style="position:absolute;right:clamp(12px,4%,40px);bottom:16%;background:#ACFF78;border-radius:999px;padding:10px 16px;font:700 13px/1 var(--font-sans);color:#000;box-shadow:0 12px 32px rgba(0,0,0,.18)">0 ture în jurul blocului</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section data-screen-label="Beneficii" style="background:#FFFFFF;padding:0 clamp(20px,6vw,116px) clamp(64px,8vw,112px)">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px">
+    <div style="background:#F9F9F9;border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:14px">
+      <span style="width:48px;height:48px;border-radius:14px;background:#053333;display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></span>
+      <h3 style="margin:8px 0 0;font:700 22px/1.2 var(--font-sans);letter-spacing:-0.01em;color:#000">Fără ture în plus</h3>
+      <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40">Știi unde parchezi înainte să pornești motorul.</p>
+    </div>
+    <div style="background:#F9F9F9;border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:14px">
+      <span style="width:48px;height:48px;border-radius:14px;background:#053333;display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"></path></svg></span>
+      <h3 style="margin:8px 0 0;font:700 22px/1.2 var(--font-sans);letter-spacing:-0.01em;color:#000">Locul e al tău</h3>
+      <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40">Îl rezervi din timp. Când ajungi, e liber.</p>
+    </div>
+    <div style="background:#F9F9F9;border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:14px">
+      <span style="width:48px;height:48px;border-radius:14px;background:#053333;display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"></rect><path d="M12 18h.01"></path></svg></span>
+      <h3 style="margin:8px 0 0;font:700 22px/1.2 var(--font-sans);letter-spacing:-0.01em;color:#000">Totul dintr-o aplicație</h3>
+      <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40">Cauți, rezervi, plătești. Fără bilețele, fără automate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="cum" data-screen-label="Cum funcționează" style="background:#F9F9F9;padding:clamp(64px,9vw,120px) clamp(20px,6vw,116px);scroll-margin-top:68px">
+  <div style="max-width:1140px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px">
+      <h2 style="margin:0;font:700 clamp(34px,4.4vw,52px)/1.05 var(--font-sans);letter-spacing:-0.03em;color:#000;max-width:640px;text-wrap:balance">Trei pași. Și ai parcat.</h2>
+      <p style="margin:0;font:400 17px/1.5 var(--font-sans);color:#3A3C40;max-width:340px">Cam cât îți ia să citești asta.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:0;border-top:1px solid #D3D4D8">
+      <div style="padding:32px 32px 8px 0;display:flex;flex-direction:column;gap:12px">
+        <span style="font:700 15px/1 var(--font-sans);color:#053333;display:flex;align-items:center;gap:10px"><span style="background:#ACFF78;border-radius:999px;padding:6px 10px">01</span></span>
+        <h3 style="margin:12px 0 0;font:700 28px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Cauți</h3>
+        <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40;max-width:300px">Alegi zona și ora la care ai nevoie de loc.</p>
+      </div>
+      <div style="padding:32px 32px 8px 0;display:flex;flex-direction:column;gap:12px">
+        <span style="font:700 15px/1 var(--font-sans);color:#053333;display:flex"><span style="background:#ACFF78;border-radius:999px;padding:6px 10px">02</span></span>
+        <h3 style="margin:12px 0 0;font:700 28px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Rezervi</h3>
+        <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40;max-width:300px">Vezi opțiunile, prețul final și îți iei locul.</p>
+      </div>
+      <div style="padding:32px 32px 8px 0;display:flex;flex-direction:column;gap:12px">
+        <span style="font:700 15px/1 var(--font-sans);color:#053333;display:flex"><span style="background:#ACFF78;border-radius:999px;padding:6px 10px">03</span></span>
+        <h3 style="margin:12px 0 0;font:700 28px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Parchezi</h3>
+        <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40;max-width:300px">Mergi direct la loc. Fără cercuri în jurul blocului.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EARLY ACCESS -->
+<section data-screen-label="Acces prioritar" style="background:#FFFFFF;padding:clamp(64px,8vw,104px) clamp(20px,6vw,116px) 0">
+  <div style="max-width:1140px;margin:0 auto;background:#ACFF78;border-radius:28px;padding:clamp(36px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:32px;align-items:end;position:relative;overflow:hidden">
+    <div style="display:flex;flex-direction:column;gap:18px;position:relative">
+      <span style="font:700 13px/1 var(--font-sans);color:#053333;letter-spacing:0.02em">Acces prioritar</span>
+      <h2 style="margin:0;font:700 clamp(36px,4.6vw,56px)/1.02 var(--font-sans);letter-spacing:-0.035em;color:#000;text-wrap:balance">Fii printre primii care parchează cu Parqie.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;position:relative">
+      <p style="margin:0;font:500 18px/1.5 var(--font-sans);color:#053333;max-width:420px">Te înscrii azi, primești acces înaintea tuturor când pornim în Chișinău.</p>
+      <button onClick="{{ openBlank }}" style="height:56px;padding:0 28px;border-radius:20px;border:0;background:#053333;color:#F9F9F9;font:700 15px/20px var(--font-sans);cursor:pointer;display:flex;align-items:center;gap:10px;transition:background 200ms ease-out" style-hover="background:#000000" style-active="transform:scale(0.98)">Vreau acces prioritar
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ACFF78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- DEMAND -->
+<section id="zone" data-screen-label="Unde vrei Parqie" style="background:#FFFFFF;padding:clamp(72px,9vw,128px) clamp(20px,6vw,116px);scroll-margin-top:68px">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,80px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <h2 style="margin:0;font:700 clamp(40px,5.4vw,68px)/1.0 var(--font-sans);letter-spacing:-0.035em;color:#000">Unde vrei Parqie primul?</h2>
+      <p style="margin:0;font:400 18px/1.5 var(--font-sans);color:#3A3C40;max-width:440px;text-wrap:pretty">Alege zona unde îți e cel mai greu să găsești loc. Pornim acolo unde ne cer cei mai mulți șoferi.</p>
+    </div>
+    <div style="background:#F9F9F9;border-radius:24px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <span style="font:700 15px/20px var(--font-sans);color:#000">Votează zona ta</span>
+        <span style="font:500 13px/18px var(--font-sans);color:#5A5C60">Zone cerute de șoferi, nu zone active</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <sc-for list="{{ zones }}" as="z" hint-placeholder-count="6">
+          <button onClick="{{ z.pick }}" style="height:48px;padding:0 20px;border-radius:999px;border:1.5px solid {{ z.border }};background:{{ z.bg }};color:{{ z.fg }};font:600 15px/20px var(--font-sans);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 200ms ease-out" style-active="transform:scale(0.98)">{{ z.name }}</button>
+        </sc-for>
+        <button onClick="{{ pickOther }}" style="height:48px;padding:0 20px;border-radius:999px;border:1.5px dashed {{ otherBorder }};background:{{ otherBg }};color:{{ otherFg }};font:600 15px/20px var(--font-sans);cursor:pointer;display:flex;align-items:center;gap:6px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Altă zonă</button>
+      </div>
+      <sc-if value="{{ zoneChosen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:4px">
+          <sc-if value="{{ isOther }}" hint-placeholder-val="{{ false }}">
+            <input value="{{ other }}" onChange="{{ onOther }}" placeholder="Care zonă? Ex: Ciocana, Durlești" style="height:52px;border-radius:15px;border:1px solid #D3D4D8;background:#fff;padding:0 16px;font:500 16px/24px var(--font-sans);color:#000">
+          </sc-if>
+          <input value="{{ detail }}" onChange="{{ onDetail }}" placeholder="Adresă exactă (opțional) — ex: lângă Piața Centrală" style="height:52px;border-radius:15px;border:1px solid #D3D4D8;background:#fff;padding:0 16px;font:500 16px/24px var(--font-sans);color:#000">
+          <button onClick="{{ submitZone }}" style="height:56px;border-radius:20px;border:0;background:#ACFF78;color:#000;font:700 15px/20px var(--font-sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:#9FEF6C">{{ zoneCta }}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noZone }}" hint-placeholder-val="{{ true }}">
+        <p style="margin:0;font:400 14px/20px var(--font-sans);color:#5A5C60">Alege o zonă ca să continui. Poți adăuga și o adresă exactă.</p>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section data-screen-label="Certitudine" style="background:#053333;padding:clamp(72px,9vw,128px) clamp(20px,6vw,116px);overflow:hidden">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(48px,6vw,80px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:clamp(16px,2vw,24px)">
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="width:44px;height:44px;border-radius:50%;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <span style="font:700 clamp(32px,4.4vw,56px)/1.05 var(--font-sans);letter-spacing:-0.035em;color:#F9F9F9">Știi unde parchezi.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="width:44px;height:44px;border-radius:50%;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <span style="font:700 clamp(32px,4.4vw,56px)/1.05 var(--font-sans);letter-spacing:-0.035em;color:#F9F9F9">Știi cât costă.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="width:44px;height:44px;border-radius:50%;background:#ACFF78;display:grid;place-items:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <span style="font:700 clamp(32px,4.4vw,56px)/1.05 var(--font-sans);letter-spacing:-0.035em;color:#ACFF78">Știi că ai loc.</span>
+      </div>
+      <p style="margin:12px 0 0;font:400 18px/1.5 var(--font-sans);color:rgba(249,249,249,.82);max-width:420px">Fără surprize la sosire. Doar tu, mașina și locul tău.</p>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <div style="width:272px;height:560px;background:#0B0B0B;border-radius:46px;padding:9px;box-shadow:0 30px 60px rgba(0,0,0,.35);border:1px solid rgba(249,249,249,.12)">
+        <div style="width:100%;height:100%;background:#F9F9F9;border-radius:38px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font:600 13px/1 var(--font-sans);color:#000"><span>9:41</span><span style="width:84px;height:24px;background:#0B0B0B;border-radius:999px"></span><span>●●●</span></div>
+          <div style="padding:16px 18px 22px;display:flex;flex-direction:column;gap:16px;flex:1">
+            <span style="width:56px;height:56px;border-radius:16px;background:#ACFF78;display:grid;place-items:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+            <div>
+              <div style="font:700 26px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Rezervat.</div>
+              <div style="font:500 13px/1.4 var(--font-sans);color:#6A6C70;margin-top:4px">Locul te așteaptă.</div>
+            </div>
+            <div style="background:#fff;border:1px solid #D3D4D8;border-radius:14px;padding:4px 14px">
+              <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #EDEEF0;font:500 13px/1 var(--font-sans)"><span style="color:#6A6C70">Zonă</span><span style="font-weight:700;color:#000">Centru</span></div>
+              <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #EDEEF0;font:500 13px/1 var(--font-sans)"><span style="color:#6A6C70">Interval</span><span style="font-weight:700;color:#000">14:00 – 16:00</span></div>
+              <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #EDEEF0;font:500 13px/1 var(--font-sans)"><span style="color:#6A6C70">Loc</span><span style="font-weight:700;color:#000">Nr. 12</span></div>
+              <div style="display:flex;justify-content:space-between;padding:12px 0;font:500 13px/1 var(--font-sans)"><span style="color:#6A6C70">Plată</span><span style="font-weight:700;color:#053333">Achitat</span></div>
+            </div>
+            <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+              <div style="height:48px;border-radius:999px;background:#053333;color:#F9F9F9;display:flex;align-items:center;justify-content:center;font:700 14px/1 var(--font-sans)">Navighează</div>
+              <div style="text-align:center;font:500 11px/1.4 var(--font-sans);color:#8A8C90">Ecran ilustrativ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<section data-screen-label="Aplicația" style="background:#F9F9F9;padding:clamp(72px,9vw,120px) clamp(20px,6vw,116px) 0;overflow:hidden">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:20px;padding-bottom:clamp(40px,8vw,120px);align-items:flex-start">
+      <h2 style="margin:0;font:700 clamp(36px,4.6vw,56px)/1.02 var(--font-sans);letter-spacing:-0.035em;color:#000;text-wrap:balance">Parqie vine pe iPhone și Android.</h2>
+      <p style="margin:0;font:400 18px/1.5 var(--font-sans);color:#3A3C40;max-width:420px">Intră pe listă și îți scriem în ziua în care aplicația e gata de descărcat.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:8px">
+        <button onClick="{{ openBlank }}" style="height:52px;padding:0 26px;border-radius:20px;border:2px solid #053333;background:transparent;color:#053333;font:700 15px/20px var(--font-sans);cursor:pointer;transition:all 200ms ease-out" style-hover="background:#053333;color:#F9F9F9">Intră pe listă</button>
+        <span style="font:500 13px/18px var(--font-sans);color:#5A5C60">App Store și Google Play — în curând</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;align-items:flex-end;gap:20px;height:480px">
+      <div style="width:240px;height:460px;background:#0B0B0B;border-radius:42px 42px 0 0;padding:8px 8px 0;transform:translateY(40px)">
+        <div style="width:100%;height:100%;background:#053333;border-radius:34px 34px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px">
+          <div style="display:flex;align-items:flex-start;gap:3px"><img src="assets/logo-mark-lime.svg" alt="" style="height:44px"><img src="assets/logo-wordmark-lime.svg" alt="" style="height:36.4px"></div>
+          <span style="font:500 13px/1 var(--font-sans);color:rgba(249,249,249,.8)">În curând</span>
+        </div>
+      </div>
+      <div style="width:240px;height:480px;background:#0B0B0B;border-radius:42px 42px 0 0;padding:8px 8px 0">
+        <div style="width:100%;height:100%;background:#FFFFFF;border-radius:34px 34px 0 0;padding:52px 16px 0;display:flex;flex-direction:column;gap:12px">
+          <div style="font:700 20px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Rezervările mele</div>
+          <div style="display:flex;gap:6px"><span style="padding:6px 12px;border-radius:999px;background:#053333;color:#F9F9F9;font:600 11px/1 var(--font-sans)">Active</span><span style="padding:6px 12px;border-radius:999px;border:1px solid #D3D4D8;font:600 11px/1 var(--font-sans);color:#000">Istoric</span></div>
+          <div style="border:1px solid #D3D4D8;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center">
+            <span style="width:36px;height:36px;border-radius:10px;background:#ACFF78;display:grid;place-items:center;flex:none"><img src="assets/logo-mark-green.svg" alt="" style="height:20px"></span>
+            <div style="flex:1"><div style="font:700 13px/1.2 var(--font-sans);color:#000">Azi · 14:00</div><div style="font:500 11px/1.4 var(--font-sans);color:#6A6C70">Loc confirmat</div></div>
+          </div>
+          <div style="border:1px solid #EDEEF0;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center;opacity:.6">
+            <span style="width:36px;height:36px;border-radius:10px;background:#EDEEF0;flex:none"></span>
+            <div style="flex:1"><div style="height:8px;width:70%;background:#E4E5E7;border-radius:4px"></div><div style="height:6px;width:45%;background:#EDEEF0;border-radius:4px;margin-top:6px"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section data-screen-label="Întrebări" style="background:#FFFFFF;padding:clamp(72px,9vw,120px) clamp(20px,6vw,116px)">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
+    <h2 style="margin:0;font:700 clamp(34px,4.2vw,48px)/1.05 var(--font-sans);letter-spacing:-0.03em;color:#000">Pe scurt.</h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #D3D4D8;grid-column:span 1;min-width:0">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid #D3D4D8">
+          <button onClick="{{ f.toggle }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;background:none;border:0;cursor:pointer;text-align:left;font:600 19px/1.3 var(--font-sans);color:#000">
+            <span>{{ f.q }}</span>
+            <span style="width:32px;height:32px;border-radius:50%;background:{{ f.iconBg }};display:grid;place-items:center;flex:none;transition:all 200ms ease-out;transform:rotate({{ f.rot }})"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0 0 24px;font:400 16px/1.55 var(--font-sans);color:#3A3C40;max-width:560px">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer data-screen-label="Footer" style="background:#053333;padding:clamp(56px,7vw,80px) clamp(20px,6vw,116px) 32px">
+  <div style="max-width:1140px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:40px 32px">
+      <div style="display:flex;flex-direction:column;gap:16px;grid-column:span 1">
+        <div style="display:flex;align-items:flex-start;gap:3px"><img src="assets/logo-mark-lime.svg" alt="" style="height:36px"><img src="assets/logo-wordmark-lime.svg" alt="parqie" style="height:29.7px"></div>
+        <span style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.75);max-width:200px">Parcarea, rezolvată înainte să pleci.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font:700 14px/20px var(--font-sans);color:#F9F9F9">Pentru șoferi</span>
+        <a href="#cum" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Cum funcționează</a>
+        <a href="#zone" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Lista de așteptare</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Contact</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font:700 14px/20px var(--font-sans);color:#F9F9F9">Parqie</span>
+        <a href="#" id="despre" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Despre noi</a>
+        <a href="#" id="business" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Pentru business</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Cariere</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font:700 14px/20px var(--font-sans);color:#F9F9F9">Legal</span>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Termeni și condiții</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Confidențialitate</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Cookies</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font:700 14px/20px var(--font-sans);color:#F9F9F9">Urmărește-ne</span>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Instagram</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">Facebook</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">TikTok</a>
+        <a href="#" style="font:400 14px/20px var(--font-sans);color:rgba(249,249,249,.8)" style-hover="color:#ACFF78">LinkedIn</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(249,249,249,.15);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font:400 13px/18px var(--font-sans);color:rgba(249,249,249,.65)">
+      <span>© 2026 Parqie. Chișinău, Moldova.</span>
+      <span>hello@parqie.com</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<sc-if value="{{ modal }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:50;background:rgba(5,51,51,.72);display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ stop }}" style="width:100%;max-width:460px;background:#FFFFFF;border-radius:24px;padding:clamp(24px,4vw,36px);box-shadow:0 12px 32px rgba(5,51,51,0.12);display:flex;flex-direction:column;gap:18px;position:relative">
+      <button onClick="{{ closeModal }}" aria-label="Închide" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:0;background:#F1F2F2;cursor:pointer;display:grid;place-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:8px;padding-right:40px">
+            <h3 style="margin:0;font:700 28px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Încă un pas.</h3>
+            <p style="margin:0;font:400 15px/1.5 var(--font-sans);color:#3A3C40">Lasă-ne e-mailul și îți scriem primii când Parqie pornește în zona ta.</p>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 13px/18px var(--font-sans);color:#000">Unde ai nevoie de parcare
+            <input value="{{ loc }}" onChange="{{ onLoc }}" placeholder="Stradă sau zonă din Chișinău" style="height:52px;border-radius:15px;border:1px solid #D3D4D8;padding:0 16px;font:500 16px/24px var(--font-sans);color:#000;background:#fff">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 13px/18px var(--font-sans);color:#000">E-mail
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" onKeyDown="{{ onEmailKey }}" placeholder="nume@exemplu.md" style="height:52px;border-radius:15px;border:1px solid {{ emailBorder }};padding:0 16px;font:500 16px/24px var(--font-sans);color:#000;background:#fff">
+          </label>
+          <sc-if value="{{ err }}" hint-placeholder-val="{{ false }}"><span style="font:500 13px/18px var(--font-sans);color:#FF2B3A;margin-top:-10px">{{ err }}</span></sc-if>
+          <button onClick="{{ submit }}" style="height:56px;border-radius:20px;border:0;background:#ACFF78;color:#000;font:700 15px/20px var(--font-sans);cursor:pointer" style-hover="background:#9FEF6C">Intră pe lista de așteptare</button>
+          <span style="font:400 12px/18px var(--font-sans);color:#5A5C60;text-align:center">Gratuit. Fără spam. Te poți dezabona oricând.</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;padding:8px 0">
+          <span style="width:56px;height:56px;border-radius:16px;background:#ACFF78;display:grid;place-items:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <h3 style="margin:0;font:700 28px/1.1 var(--font-sans);letter-spacing:-0.02em;color:#000">Ești pe listă.</h3>
+          <p style="margin:0;font:400 16px/1.5 var(--font-sans);color:#3A3C40">{{ doneText }}</p>
+          <button onClick="{{ closeModal }}" style="height:48px;padding:0 24px;border-radius:15px;border:2px solid #053333;background:transparent;color:#053333;font:700 14px/20px var(--font-sans);cursor:pointer;margin-top:8px">Închide</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;headline&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Pleci de acasă cu parcarea deja rezolvată.&quot;,&quot;Nu mai da ture. Rezervă-ți locul.&quot;,&quot;Locul tău te așteaptă. Nu invers.&quot;,&quot;Parcarea, rezolvată înainte să pleci.&quot;],&quot;default&quot;:&quot;Pleci de acasă cu parcarea deja rezolvată.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1280, address: '', modal: false, loc: '', email: '', err: '', done: false, zone: null, other: '', detail: '', faq: 0 };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    this.onR();
+    window.addEventListener('resize', this.onR);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  open(loc) { this.setState({ modal: true, loc: loc || '', done: false, err: '' }); }
+  submit() {
+    const s = this.state;
+    if (!/\S+@\S+\.\S+/.test(s.email)) return this.setState({ err: 'Introdu o adresă de e-mail validă.' });
+    this.setState({ done: true, err: '' });
+  }
+  renderVals() {
+    const s = this.state;
+    const zones = ['Centru', 'Rîșcani', 'Botanica', 'Buiucani', 'Ciocana', 'Telecentru'].map(z => {
+      const on = s.zone === z;
+      return { name: z, bg: on ? '#053333' : '#FFFFFF', fg: on ? '#F9F9F9' : '#191919', border: on ? '#053333' : '#D3D4D8',
+        pick: () => this.setState({ zone: on ? null : z }) };
+    });
+    const isOther = s.zone === '__other';
+    const zoneName = isOther ? (s.other.trim() || 'zona ta') : s.zone;
+    const faqData = [
+      ['Când se lansează Parqie?', 'Pornim în curând în Chișinău. Cei de pe lista de așteptare află primii — și intră primii.'],
+      ['Unde va funcționa?', 'Începem cu zonele unde ne cer cei mai mulți șoferi. Spune-ne unde ai nevoie de parcare și ne ajuți să alegem.'],
+      ['Costă ceva să intru pe listă?', 'Nu. Lista e gratuită.'],
+      ['Va fi pe iPhone și Android?', 'Da, pe ambele.'],
+    ];
+    const faqs = faqData.map(([q, a], i) => {
+      const open = s.faq === i;
+      return { q, a, open, rot: open ? '45deg' : '0deg', iconBg: open ? '#ACFF78' : '#F1F2F2', toggle: () => this.setState({ faq: open ? -1 : i }) };
+    });
+    const loc = s.loc.trim();
+    return {
+      wide: s.w >= 960,
+      navCta: s.w >= 520 ? 'Intră pe lista de așteptare' : 'Intră pe listă',
+      headline: this.props.headline ?? 'Pleci de acasă cu parcarea deja rezolvată.',
+      address: s.address,
+      onAddress: e => this.setState({ address: e.target.value }),
+      onAddressKey: e => { if (e.key === 'Enter') this.open(s.address); },
+      openHero: () => this.open(s.address),
+      openBlank: () => this.open(s.address),
+      zones, isOther, zoneChosen: !!s.zone, noZone: !s.zone,
+      otherBg: isOther ? '#053333' : 'transparent', otherFg: isOther ? '#F9F9F9' : '#053333', otherBorder: isOther ? '#053333' : '#053333',
+      pickOther: () => this.setState({ zone: isOther ? null : '__other' }),
+      other: s.other, onOther: e => this.setState({ other: e.target.value }),
+      detail: s.detail, onDetail: e => this.setState({ detail: e.target.value }),
+      zoneCta: isOther ? 'Vreau Parqie aici' : `Vreau Parqie în ${zoneName}`,
+      submitZone: () => this.open([isOther ? s.other.trim() : s.zone, s.detail.trim()].filter(Boolean).join(', ')),
+      faqs,
+      modal: s.modal, done: s.done, notDone: !s.done,
+      closeModal: () => this.setState({ modal: false }),
+      stop: e => e.stopPropagation(),
+      loc: s.loc, onLoc: e => this.setState({ loc: e.target.value }),
+      email: s.email, onEmail: e => this.setState({ email: e.target.value, err: '' }),
+      onEmailKey: e => { if (e.key === 'Enter') this.submit(); },
+      emailBorder: s.err ? '#FF2B3A' : '#D3D4D8',
+      err: s.err,
+      submit: () => this.submit(),
+      doneText: loc ? `Am notat: ${loc}. Îți scriem primii când Parqie pornește acolo.` : 'Îți scriem primii când Parqie pornește în Chișinău.',
+    };
+  }
+}
+</script>
+</body>
+</html>

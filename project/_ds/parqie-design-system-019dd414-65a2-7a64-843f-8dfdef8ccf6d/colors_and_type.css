@@ -1,0 +1,175 @@
+/* ============================================================
+   Parqie Design System — Foundations
+   Source of truth: Figma "Design System v2"
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  /* ---------- Brand colors ---------- */
+  --pq-dark-green:  #053333;   /* primary brand surface (nav, footer, dark CTA) */
+  --pq-lime:        #ACFF78;   /* signature accent — primary CTA + brand glyph */
+  --pq-white:       #F9F9F9;   /* off-white page surface */
+  --pq-pure-white:  #FFFFFF;   /* card surfaces, dialogs */
+  --pq-black:       #191919;   /* near-black text on light, dark mode bg */
+  --pq-true-black:  #000000;   /* hi-emphasis body text */
+  --pq-red:         #FF2B3A;   /* destructive / danger */
+  --pq-grey:        #D3D4D8;   /* disabled / hairline borders */
+  --pq-grey-text:   #BBBBBC;   /* muted secondary text */
+
+  /* ---------- Semantic surfaces ---------- */
+  --bg:            var(--pq-white);
+  --bg-elevated:   var(--pq-pure-white);
+  --bg-inverse:    var(--pq-dark-green);
+  --bg-inverse-2:  var(--pq-black);
+
+  /* ---------- Semantic text ---------- */
+  --fg-1:          var(--pq-true-black);   /* hi-emphasis */
+  --fg-2:          var(--pq-black);        /* body */
+  --fg-3:          var(--pq-grey-text);    /* muted / placeholder */
+  --fg-on-dark:    var(--pq-white);
+  --fg-on-lime:    var(--pq-true-black);
+
+  /* ---------- Semantic accents ---------- */
+  --accent:        var(--pq-lime);
+  --accent-fg:     var(--pq-true-black);
+  --danger:        var(--pq-red);
+  --border:        var(--pq-grey);
+  --border-strong: var(--pq-dark-green);
+
+  /* ---------- Typography ---------- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Base scale (Figma-derived) */
+  --fz-display: 48px;
+  --fz-h1:      32px;
+  --fz-h2:      24px;
+  --fz-h3:      18px;
+  --fz-body:    16px;
+  --fz-body-sm: 14px;
+  --fz-caption: 12px;
+
+  --lh-tight:   100%;
+  --lh-normal:  20px;     /* matches Figma cells */
+  --lh-relaxed: 1.5;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* ---------- Radii ---------- */
+  --r-sm:    8px;
+  --r-md:    15px;
+  --r-lg:    20px;     /* button capsule */
+  --r-pill:  999px;
+  --r-card:  12px;
+
+  /* ---------- Spacing ---------- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* ---------- Elevation ---------- */
+  --shadow-sm: 0 1px 2px rgba(5, 51, 51, 0.06);
+  --shadow-md: 0 4px 12px rgba(5, 51, 51, 0.08);
+  --shadow-lg: 0 12px 32px rgba(5, 51, 51, 0.12);
+  --shadow-lime: 0 6px 20px rgba(172, 255, 120, 0.45);
+
+  /* ---------- Motion ---------- */
+  --ease-standard: cubic-bezier(.2,.8,.2,1);
+  --ease-emph:     cubic-bezier(.2,.9,.1,1);
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+}
+
+/* ============================================================
+   Semantic text styles
+   ============================================================ */
+
+/* Weight ladder: Bold (display) → SemiBold (H1–H2) → Medium (H3) → Regular (body → caption) */
+.pq-display {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fz-display);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+}
+
+.pq-h1 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fz-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+}
+
+.pq-h2 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fz-h2);
+  line-height: 1.2;
+  color: var(--fg-1);
+}
+
+.pq-h3 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fz-h3);
+  line-height: 1.35;
+  color: var(--fg-1);
+}
+
+.pq-body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fz-body);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+}
+
+.pq-body-sm {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fz-body-sm);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+
+.pq-caption {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fz-caption);
+  line-height: var(--lh-normal);
+  letter-spacing: 0.02em;
+  color: var(--fg-3);
+  text-transform: none;
+}
+
+.pq-link {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fz-body-sm);
+  color: var(--fg-on-dark);
+  text-decoration: none;
+}
+
+.pq-nav-link {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fz-body-sm);
+  color: var(--fg-on-dark);
+  text-decoration: none;
+}
